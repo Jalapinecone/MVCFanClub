@@ -10,6 +10,7 @@ using namespace std;
 #include "editProgram.h"
 #include "compileProgram.h"
 #include "manageSystemPrefs.h"
+#include "program.h"
 
 int main()
 {
@@ -21,6 +22,7 @@ int main()
 	if(adminSel == 0){
 		isAdmin = true;
 	}
+	program currentProgram;
         functionInterface defaultInt;
         createProgram CreateProgram;
         saveProgram SaveProgram;
