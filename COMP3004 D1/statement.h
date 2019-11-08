@@ -8,8 +8,8 @@ class statement
         public:
                 statement();
                 ~statement();
-		void compile(string instr);
-		void run();
+		virtual void compile(string instr) = 0;
+		virtual void run() = 0;
         private:
 };
 #endif
