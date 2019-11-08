@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <vector>
 using namespace std;
 
 #include "SCAPESmain.h"
@@ -10,9 +11,9 @@ using namespace std;
 
 void SCAPESmain::setFunctionInterface(functionInterface* funInt)
 {
-	_funInt = funInt; 
+	_funInt = funInt;
 }
 
-void SCAPESmain::execute(){ 
-	_funInt->execute();
+void SCAPESmain::execute(vector<string> &v){
+	_funInt->execute(v);
 }
