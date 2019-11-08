@@ -1,7 +1,7 @@
 OPT = -Wall
 
-SCAPES: main.o SCAPESmain.o functionInterface.o saveProgram.o createProgram.o identifier.o variable.o operand.o label.o
-	g++ $(OPT) -o SCAPES main.o SCAPESmain.o functionInterface.o saveProgram.o createProgram.o identifier.o variable.o operand.o label.o
+SCAPES: main.o SCAPESmain.o functionInterface.o saveProgram.o createProgram.o identifier.o variable.o operand.o label.o statement.o declIntStmt.o
+	g++ $(OPT) -o SCAPES main.o SCAPESmain.o functionInterface.o saveProgram.o createProgram.o identifier.o variable.o operand.o label.o statement.o declIntStmt.o
 
 main.o: main.cc SCAPESmain.h 
 	g++ $(OPT) -c main.cc
@@ -29,6 +29,12 @@ operand.o: operand.cc operand.h identifier.h
 
 label.o: label.cc label.h identifier.h
 	g++ $(OPT) -c label.cc
+
+statement.o: statement.cc statement.h operand.h
+	g++ $(OPT) -c statement.cc
+
+declIntStmt.o: declIntStmt.cc declIntStmt.h statement.h
+	g++ $(OPT) -c declIntStmt.cc
 
 clean:
 	rm -f *.o SCAPES
