@@ -16,8 +16,6 @@ void loadProgram::execute(vector<string> &code)
 
         std::ifstream file;
         file.open (fileName);
-
-        cout << "The file contained: " <<endl;
           
         while (file.good()){
              getline(file, text);
@@ -26,6 +24,8 @@ void loadProgram::execute(vector<string> &code)
         cout << endl;
           
     file.close();
+
+    cout<< "\nFile Loaded Successfully!\n"<<endl;
 }
 loadProgram::loadProgram()
 {
