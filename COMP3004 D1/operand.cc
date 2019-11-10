@@ -5,9 +5,9 @@ using namespace std;
 
 #include "operand.h"
 
-operand::operand()
+operand::operand(string op)
 {
-        cout << "Create operand" << endl;
+        eachOperand = op;
 }
 operand::~operand(){
 

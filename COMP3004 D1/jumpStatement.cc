@@ -6,32 +6,32 @@
 
 using namespace std;
 
-#include "endStmt.h"
+#include "jumpStatement.h"
 
-endstmt::endstmt(string inst){
+jumpstatement::jumpstatement(string inst){
 
-	instructions = inst;
-	compile(inst);
+        instructions = inst;
+        compile(inst);
 }
 
-endstmt::~endstmt(){
+jumpstatement::~jumpstatement(){
 
 }
 
-void endstmt::compile(string inst){
+void jumpstatement::compile(string inst){
 	vector<char*> words = split(inst);
-        if (words.size() != 1) {
-        std::cout << "Could not compile end statement. It should have no operands.";
-	exit(1);
+        if (words.size() != 2) {
+        std::cout << "Could not compile jmp statement. Requires 1 operand to compile";
+        exit(1);
     }
     operands.push_back(new operand(std::string(words[1])));
-	
 }
 
-void endstmt::run(){
+void jumpstatement::run(){
 
 }
-vector<char*> endstmt::split(string inst){
+
+vector<char*> jumpstatement::split(string inst){
         vector<char*> words;
         char *start = &inst[0];
         for (char *character = strtok(start," "); character != nullptr; character = strtok(nullptr, " ")){

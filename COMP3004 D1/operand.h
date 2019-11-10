@@ -6,7 +6,9 @@ class operand
 {
 	public:
 		operand();
+		operand(string);
 		~operand();
 	private:
+		string eachOperand;
 };
 #endif
