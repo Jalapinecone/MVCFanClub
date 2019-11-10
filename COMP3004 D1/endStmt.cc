@@ -23,9 +23,7 @@ void endstmt::compile(string inst){
         if (words.size() != 1) {
         std::cout << "Could not compile end statement. It should have no operands.";
 	exit(1);
-    }
-    operands.push_back(new operand(std::string(words[1])));
-	
+    }	
 }
 
 void endstmt::run(){

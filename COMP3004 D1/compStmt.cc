@@ -25,6 +25,8 @@ void compstmt::compile(string inst){
         exit(1);
     }
     operands.push_back(new operand(std::string(words[1])));
+	operands.push_back(new operand(std::string(words[2])));
+
 }
 
 void compstmt::run(){
