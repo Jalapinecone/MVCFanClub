@@ -21,7 +21,7 @@ program::~program(){
 }
 
 void program::compile(){
-        cout << "compile program" << endl;
+        cout << "compile program IN THE PROGRAM CLASS" << endl;
 	ifstream input(filename);
 	string line;
 	
@@ -61,7 +61,7 @@ void program::createStatement(string line){
 		statements.push_back(new jmorestmt);
 	}
 	else if(strcmp(words[0], "jmp") == 0){
-	//	statements.push_back(new jumpstmt);
+		//statements.push_back(new jumpstmt);
 	}
 	else if(strcmp(words[0], "end") == 0){
 		statements.push_back(new endstmt);
