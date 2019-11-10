@@ -1,10 +1,12 @@
 #ifndef FUNCTIONINTERFACE_H
 #define FUNCTIONINTERFACE_H
+#include <vector>
+#include "program.h"
 
 class functionInterface
 {
 	public:
-		virtual void execute();
+		virtual void execute(program &p);
 		functionInterface();
 };
 #endif

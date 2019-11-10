@@ -6,7 +6,7 @@
 class runProgram : public functionInterface
 {
 	public:
-		void execute();
+		void execute(program &p);
 		runProgram();
 };
 #endif

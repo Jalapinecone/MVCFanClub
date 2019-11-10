@@ -5,7 +5,7 @@ using namespace std;
 
 #include "compileProgram.h"
 
-void compileProgram::execute()
+void compileProgram::execute(program &p)
 {
         cout << "Compile program code" << endl;
 }

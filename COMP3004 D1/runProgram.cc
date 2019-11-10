@@ -5,7 +5,7 @@ using namespace std;
 
 #include "runProgram.h"
 
-void runProgram::execute()
+void runProgram::execute(program &p)
 {
         cout << "Run program code" << endl;
 }
