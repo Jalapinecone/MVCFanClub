@@ -22,12 +22,16 @@ program::~program(){
 
 void program::compile(){
         cout << "compile program IN THE PROGRAM CLASS" << endl;
-	for ( auto &i : lines ) {
+	/*for ( auto &i : lines ) {
+		cout << "STOI(I): " << stoi(i) << endl; 
 		createStatement(stoi(i));
 		//Statement* newStatement = statement.back();
 		//newStatement->compile();
 		//createIdentifier(newStatement, line);
 	
+	}*/
+	for(unsigned i = 0; i != lines.size(); i++) {
+    		createStatement(i);
 	}
 }
 
@@ -37,6 +41,7 @@ void program::execute(){
 
 void program::createStatement(int i){
 	string line_no_comment = lines[i].substr(0, lines[i].find('#', 0));
+	cout << line_no_comment << endl;
 	split(line_no_comment);
 	char* label = words[0];  
 	if(&label[(strlen(label)-1)] == ":"){
@@ -50,6 +55,7 @@ void program::createStatement(int i){
 
 	}
 	else if(strcmp(words[0],"rdi") == 0){
+		cout << "compile rdi" << endl;
 		statements.push_back(new readstmt(line_no_comment));
 	}
 	else if(strcmp(words[0], "prt") == 0){
