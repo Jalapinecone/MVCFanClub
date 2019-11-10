@@ -8,9 +8,8 @@ class statement
         public:
                 statement();
                 ~statement();
-		virtual void compile(string instr);
-		virtual void run();
+		virtual void compile(string instr) = 0;
+		virtual void run() = 0;
         private:
 };
 #endif
-

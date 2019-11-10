@@ -1,33 +1,99 @@
 #include <iostream>
-using namespace std; 
+#include <vector>
+using namespace std;
 
 #include "functionInterface.h"
 #include "SCAPESmain.h"
 #include "createProgram.h"
 #include "saveProgram.h"
+#include "loadProgram.h"
+#include "runProgram.h"
+#include "editProgram.h"
+#include "compileProgram.h"
+#include "manageSystemPrefs.h"
+#include "program.h"
 
 int main()
 {
-	functionInterface defaultInt;
-	createProgram CreateProgram;
-	saveProgram SaveProgram;
-		
-	SCAPESmain SCAPESMainObj;
-	int selection; 
-	cout << endl;
-	cout << "(0) CreateProgram" << endl;
-	cout << "(1) SaveProgram" << endl;
-	cout << "Enter your selection: ";
-	cin >> selection;
-	if(selection == 0){
-                cout << "CREATE PROGRAM" << endl;
-                SCAPESMainObj.setFunctionInterface(&CreateProgram);
-                SCAPESMainObj.execute();        
-        }
-        else if(selection == 1){
-                cout << "SAVE PROGRAM" << endl;
-                SCAPESMainObj.setFunctionInterface(&SaveProgram);
-                SCAPESMainObj.execute();
-        }
+	//Testing vector for saveProgram
+	program currentProgram;
+	currentProgram.filename = "Test File Name 1";
+	currentProgram.lines = {"hello", "this", "is", "a", "trial"};
+	
+	cout << currentProgram.filename << endl;
+	//cout << currentProgram.lines;
+	//Testing vector for loadProgram
+	std::vector<string> results ={};
 
+	int adminSel;
+	bool isAdmin = false;	
+	cout << "Are you an admin?" << endl;
+	cout << "(0) Yes (1) No" << endl;
+	cin >> adminSel;
+	if(adminSel == 0){
+		isAdmin = true;
+	}
+
+	//program currentProgram;
+    	functionInterface defaultInt;
+    	createProgram CreateProgram;
+    	saveProgram SaveProgram;
+    	loadProgram LoadProgram;
+    	runProgram RunProgram;
+	editProgram EditProgram;
+	compileProgram CompileProgram;
+	manageSystemPrefs ManageSystemPrefs;
+
+	SCAPESmain SCAPESMainObj;
+	string selection;
+	cout << endl;
+    	cout << "(1) CreateProgram" << endl;
+    	cout << "(2) SaveProgram" << endl;
+    	cout << "(3) LoadProgram" << endl;
+	cout << "(4) RunProgram" << endl;
+	cout << "(5) EditProgram" << endl;
+   	cout << "(6) CompileProgram" << endl;
+	if(isAdmin){
+		cout << "(7) ManageSysPref" << endl;
+	}
+	cout << "(8) Exit" << endl;
+	while(selection != "8"){
+		cout << "Enter your selection: ";
+        	cin >> selection;
+		if(selection == "1"){
+			cout << "CREATE PROGRAM" << endl;
+			SCAPESMainObj.setFunctionInterface(&CreateProgram);
+			SCAPESMainObj.execute(currentProgram);
+		}
+		else if(selection == "2"){
+			cout << "SAVE PROGRAM" << endl;
+			SCAPESMainObj.setFunctionInterface(&SaveProgram);
+			SCAPESMainObj.execute(currentProgram);
+		}
+		else if(selection == "3"){
+			cout << "LOAD PROGRAM" << endl;
+			SCAPESMainObj.setFunctionInterface(&LoadProgram);
+			SCAPESMainObj.execute(currentProgram);
+		}
+		else if(selection == "4"){
+			cout << "RUN PROGRAM" << endl;
+			SCAPESMainObj.setFunctionInterface(&RunProgram);
+			SCAPESMainObj.execute(currentProgram);
+    		}
+		else if(selection == "5"){
+			cout << "EDIT PROGRAM" << endl;
+			SCAPESMainObj.setFunctionInterface(&EditProgram);
+			SCAPESMainObj.execute(currentProgram);
+		}
+		else if(selection == "6"){
+			cout << "COMPILE PROGRAM" << endl;
+			SCAPESMainObj.setFunctionInterface(&CompileProgram);
+			SCAPESMainObj.execute(currentProgram);
+		}
+		else if(selection == "7"){
+			cout << "MANAGE SYSTEM PREFERENCES" << endl;
+			SCAPESMainObj.setFunctionInterface(&ManageSystemPrefs);
+			SCAPESMainObj.execute(currentProgram);
+		}
+	}
 }
