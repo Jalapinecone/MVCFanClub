@@ -1,7 +1,7 @@
 OPT = -Wall
 
-SCAPES: main.o SCAPESmain.o functionInterface.o loadProgram.o saveProgram.o createProgram.o runProgram.o editProgram.o compileProgram.o manageSystemPrefs.o identifier.o variable.o operand.o label.o program.o compStmt.o declIntStmt.o endStmt.o jMoreStmt.o jumpStmt.o printStmt.o readStmt.o statement.o
-	g++ $(OPT) -o SCAPES main.o SCAPESmain.o functionInterface.o loadProgram.o saveProgram.o createProgram.o runProgram.o editProgram.o compileProgram.o manageSystemPrefs.o identifier.o variable.o operand.o label.o program.o compStmt.o declIntStmt.o endStmt.o jMoreStmt.o jumpStmt.o printStmt.o readStmt.o statement.o
+SCAPES: main.o SCAPESmain.o functionInterface.o loadProgram.o saveProgram.o createProgram.o runProgram.o editProgram.o compileProgram.o manageSystemPrefs.o identifier.o variable.o operand.o label.o program.o compStmt.o declIntStmt.o endStmt.o jMoreStmt.o jumpStatement.o printStmt.o readStmt.o statement.o
+	g++ $(OPT) -o SCAPES main.o SCAPESmain.o functionInterface.o loadProgram.o saveProgram.o createProgram.o runProgram.o editProgram.o compileProgram.o manageSystemPrefs.o identifier.o variable.o operand.o label.o program.o compStmt.o declIntStmt.o endStmt.o jMoreStmt.o jumpStatement.o printStmt.o readStmt.o statement.o
 
 main.o: main.cc SCAPESmain.h 
 	g++ $(OPT) -c main.cc
@@ -60,10 +60,10 @@ endStmt.o: endStmt.cc endStmt.h statement.h
 jMoreStmt.o: jMoreStmt.cc jMoreStmt.h statement.h
 	g++ $(OPT) -c jMoreStmt.cc
 
-jumpStmt.o: jumpStmt.cc jumpStmt.h statement.h
-	g++ $(OPT) -c jumpStmt.cc
+jumpStatement.o: jumpStatement.cc jumpStatement.h statement.h
+	g++ $(OPT) -c jumpStatement.cc
 
-printStmt.o: printStmt.cc jumpStmt.h statement.h
+printStmt.o: printStmt.cc jumpStatement.h statement.h
 	g++ $(OPT) -c printStmt.cc
 
 readStmt.o: readStmt.cc readStmt.h statement.h

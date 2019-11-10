@@ -21,8 +21,6 @@ int main()
 	currentProgram.lines = {"hello", "this", "is", "a", "trial"};
 	
 	cout << currentProgram.filename << endl;
-	//cout << currentProgram.lines;
-	//Testing vector for loadProgram
 	std::vector<string> results ={};
 
 	int adminSel;
@@ -34,7 +32,6 @@ int main()
 		isAdmin = true;
 	}
 
-	//program currentProgram;
     	functionInterface defaultInt;
     	createProgram CreateProgram;
     	saveProgram SaveProgram;
@@ -46,21 +43,31 @@ int main()
 
 	SCAPESmain SCAPESMainObj;
 	string selection;
-	cout << endl;
-    	cout << "(1) CreateProgram" << endl;
-    	cout << "(2) SaveProgram" << endl;
-    	cout << "(3) LoadProgram" << endl;
-	cout << "(4) RunProgram" << endl;
-	cout << "(5) EditProgram" << endl;
-   	cout << "(6) CompileProgram" << endl;
-	if(isAdmin){
-		cout << "(7) ManageSysPref" << endl;
-	}
-	cout << "(8) Exit" << endl;
 	while(selection != "8"){
+		cout << "(0) View Loaded Program Info" << endl;
+	        cout << "(1) CreateProgram" << endl;
+      	  	cout << "(2) SaveProgram" << endl;
+        	cout << "(3) LoadProgram" << endl;
+        	cout << "(4) RunProgram" << endl;
+        	cout << "(5) EditProgram" << endl;
+        	cout << "(6) CompileProgram" << endl;
+        	if(isAdmin){
+                	cout << "(7) ManageSysPref" << endl;
+        	}
+        	cout << "(8) Exit" << endl;
+
 		cout << "Enter your selection: ";
         	cin >> selection;
-		if(selection == "1"){
+		if(selection == "0"){
+			cout << "CURRENT PROGRAM" << endl;
+			cout << currentProgram.filename << endl;
+			cout << "__________CURRENT_PROGRAM_LINES________" << endl;
+			for(unsigned i = 0; i < currentProgram.lines.size(); i++){
+				cout << currentProgram.lines[i] << endl;
+			}
+			cout << "_______________________________________" << endl;
+		}
+		else if(selection == "1"){
 			cout << "CREATE PROGRAM" << endl;
 			SCAPESMainObj.setFunctionInterface(&CreateProgram);
 			SCAPESMainObj.execute(currentProgram);

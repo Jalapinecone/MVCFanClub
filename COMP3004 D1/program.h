@@ -8,7 +8,7 @@
 #include "printStmt.h"
 #include "compStmt.h"
 #include "jMoreStmt.h"
-#include "jumpStmt.h"
+#include "jumpStatement.h"
 #include "endStmt.h"
 
 
@@ -26,8 +26,8 @@ class program
 		vector<string> lines;
 		void compile();
 		void execute();
-		void createStatement(string);
-		vector<char*> split(string);
+		void createStatement(int);
+		void split(string);
 		void print();
 	private:
 		int comparisonFlag;
