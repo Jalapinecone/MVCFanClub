@@ -5,7 +5,7 @@ using namespace std;
 
 #include "editProgram.h"
 
-void editProgram::execute()
+void editProgram::execute(program &p)
 {
         cout << "Edit program code" << endl;
 }

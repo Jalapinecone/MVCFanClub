@@ -13,4 +13,3 @@ class statement
         private:
 };
 #endif
-

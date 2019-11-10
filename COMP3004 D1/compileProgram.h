@@ -6,7 +6,7 @@
 class compileProgram : public functionInterface
 {
 	public:
-		void execute();
+		void execute(program &p);
 		compileProgram();
 };
 #endif

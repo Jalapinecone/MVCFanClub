@@ -6,7 +6,7 @@
 class editProgram : public functionInterface
 {
 	public:
-		void execute();
+		void execute(program &p);
 		editProgram();
 };
 #endif
