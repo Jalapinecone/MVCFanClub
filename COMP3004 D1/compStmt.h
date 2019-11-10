@@ -6,10 +6,11 @@
 class compstmt : public statement
 {
 	public:
-		compstmt();
+		compstmt(string);
 		~compstmt();
 		void compile(string instr);
 		void run();
 	private:
+		string instructions;
 };
 #endif

@@ -6,10 +6,11 @@
 class endstmt : public statement
 {
 	public:
-		endstmt();
+		endstmt(string);
 		~endstmt();
 		void compile(string instr);
 		void run();
 	private:
+		string instructions;
 };
 #endif

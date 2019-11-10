@@ -6,10 +6,11 @@
 class printstmt : public statement
 {
 	public:
-		printstmt();
+		printstmt(string);
 		~printstmt();
 		void compile(string instr);
 		void run();
 	private:
+		string instructions;
 };
 #endif

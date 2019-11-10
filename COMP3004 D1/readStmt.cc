@@ -5,8 +5,10 @@ using namespace std;
 
 #include "readStmt.h"
 
-readstmt::readstmt(){
+readstmt::readstmt(string inst){
 
+	instructions = inst;
+	compile(inst);
 }
 
 readstmt::~readstmt(){

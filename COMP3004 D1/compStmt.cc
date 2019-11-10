@@ -5,8 +5,10 @@ using namespace std;
 
 #include "compStmt.h"
 
-compstmt::compstmt(){
+compstmt::compstmt(string inst){
 
+	instructions = inst;
+	compile(inst);
 }
 
 compstmt::~compstmt(){

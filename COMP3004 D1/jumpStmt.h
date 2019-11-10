@@ -6,10 +6,11 @@
 class jumpstmt : public statement
 {
 	public:
-		jumpstmt();
+		jumpstmt(string);
 		~jumpstmt();
 		void compile(string instr);
 		void run();
 	private:
+		string instructions;
 };
 #endif

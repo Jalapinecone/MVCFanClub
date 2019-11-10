@@ -5,8 +5,10 @@ using namespace std;
 
 #include "jMoreStmt.h"
 
-jmorestmt::jmorestmt(){
+jmorestmt::jmorestmt(string inst){
 
+	instructions = inst;
+	compile(inst);
 }
 
 jmorestmt::~jmorestmt(){

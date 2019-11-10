@@ -5,8 +5,10 @@ using namespace std;
 
 #include "printStmt.h"
 
-printstmt::printstmt(){
+printstmt::printstmt(string inst){
 
+	instructions = inst;
+	compile(inst);
 }
 
 printstmt::~printstmt(){

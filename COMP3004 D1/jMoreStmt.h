@@ -6,10 +6,11 @@
 class jmorestmt : public statement
 {
 	public:
-		jmorestmt();
+		jmorestmt(string);
 		~jmorestmt();
 		void compile(string instr);
 		void run();
 	private:
+		string instructions;
 };
 #endif

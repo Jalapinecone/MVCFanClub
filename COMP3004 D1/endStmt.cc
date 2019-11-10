@@ -5,8 +5,10 @@ using namespace std;
 
 #include "endStmt.h"
 
-endstmt::endstmt(){
+endstmt::endstmt(string inst){
 
+	instructions = inst;
+	compile(inst);
 }
 
 endstmt::~endstmt(){

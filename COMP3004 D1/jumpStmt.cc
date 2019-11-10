@@ -5,8 +5,10 @@ using namespace std;
 
 #include "jumpStmt.h"
 
-jumpstmt::jumpstmt(){
+jumpstmt::jumpstmt(string inst){
 
+	instructions = inst;
+	compile(inst);
 }
 
 jumpstmt::~jumpstmt(){

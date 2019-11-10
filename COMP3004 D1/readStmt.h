@@ -6,10 +6,11 @@
 class readstmt : public statement
 {
 	public:
-		readstmt();
+		readstmt(string);
 		~readstmt();
 		void compile(string instr);
 		void run();
 	private:
+		string instructions;
 };
 #endif

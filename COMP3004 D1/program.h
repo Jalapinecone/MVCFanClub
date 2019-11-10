@@ -20,13 +20,14 @@ class program
 {
 	public:
 		program();
-		program(string);
+		void changeName(string);
 		~program();
 		string filename;
+		vector<string> lines;
 		void compile();
 		void execute();
-		void createStatement(string);
-		vector<char*> split(string);
+		void createStatement(int);
+		void split(string);
 		void print();
 	private:
 		int comparisonFlag;
