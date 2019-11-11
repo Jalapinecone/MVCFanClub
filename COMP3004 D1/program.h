@@ -29,11 +29,14 @@ class program
 		void createStatement(int);
 		void split(string);
 		void print();
+		bool identifierCheck(string);
+
 	private:
 		int comparisonFlag;
 		vector<statement*> statements;
 		vector<identifier*> identifiers;
 		vector<char*> words;
+		bool compare = false;
 
 
 
