@@ -1,6 +1,7 @@
 #ifndef STATEMENT_H
 #define STATEMENT_H
 #include <string>
+#include <vector>
 #include "operand.h"
 
 class statement
@@ -10,6 +11,9 @@ class statement
                 ~statement();
 		virtual void compile(string instr) = 0;
 		virtual void run() = 0;
+                vector<operand*> operands;
+                vector<operand*> getOperands();;
         private:
+                
 };
 #endif

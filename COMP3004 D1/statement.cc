@@ -21,3 +21,8 @@ void statement::compile(string instr){
 void statement::run(){
 	cout << "run program" << endl;
 }
+
+vector<operand*> statement::getOperands()
+{
+	return operands;
+}
