@@ -17,12 +17,12 @@ declintstmt::~declintstmt(){
 }
 
 void declintstmt::compile(string inst){
-	vector<char*> words = split(inst);
-	if (words.size() != 2) {
+	vector<char*> word = split(inst);
+	if (word.size() != 2) {
         std::cout << "Could not compile dci statement. Requires 1 operand to compile";
         exit(1);
     }
-    operands.push_back(new operand(std::string(words[1])));
+    operands.push_back(new operand(std::string(word[1])));
 }
 
 void declintstmt::run(){
@@ -30,11 +30,11 @@ void declintstmt::run(){
 }
 
 vector<char*> declintstmt::split(string inst){
-	vector<char*> words;
+	vector<char*> word;
         char *start = &inst[0];
         for (char *character = strtok(start," "); character != nullptr; character = strtok(nullptr, " ")){
-        words.push_back(start);
+        word.push_back(start);
         }
-	return words;
+	return word;
 }
 

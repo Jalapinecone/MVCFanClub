@@ -27,7 +27,7 @@ class program
 		void compile();
 		void execute();
 		void createStatement(int);
-		void split(string);
+		vector <char *> split(string);
 		void print();
 		bool identifierCheck(string);
 
@@ -35,7 +35,6 @@ class program
 		int comparisonFlag;
 		vector<statement*> statements;
 		vector<identifier*> identifiers;
-		vector<char*> words;
 		bool compare = false;
 
 

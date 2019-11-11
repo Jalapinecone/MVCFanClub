@@ -35,12 +35,12 @@ void program::createStatement(int i){
 	cout << "_________________________" << endl;
 	cout << "CREATE STATEMENT" << endl;
 	cout << "i: " << i << endl;
-
+        vector<char*> words;	
 	string line_no_comment = lines[i].substr(0, lines[i].find('#', 0));
 	cout << "LINE NO COMMENT:" << line_no_comment << endl;
 	if (line_no_comment.length() > 1) {
 		cout << line_no_comment << endl;
-		split(line_no_comment);
+		words = split(line_no_comment);
 		char* label = words[0];
 		if (&label[(strlen(label) - 1)] == ":") {
 			identifiers.push_back(new identifier(string(words[0])));
@@ -80,8 +80,8 @@ void program::createStatement(int i){
 		}
 		else if (strcmp(words[0], "cmp") == 0) {
 			cout << "compile cmp" << endl;
-			cout << words[1] << endl;
-			cout << words[2] << endl;
+			cout << words[1] << "BLAGH!!!" << endl;
+			cout << words[2] << "BRUHHH!!!" << endl;
 			bool okay = identifierCheck(string(words[1]));
 			bool okay2 = identifierCheck(string(words[2]));
 			if (okay && okay2) {
@@ -142,13 +142,15 @@ void program::print(){
 	cout << "print program" << endl;
 }
 
-void program::split(string line_no_comment){
-	char *start = &line_no_comment[0];
-	int i = 0;
-	for (char *character = strtok(start," "); character != nullptr; character = strtok(nullptr, " ")){
-		++i;
+vector<char *> program::split(string line_no_comment){
+	vector <char *> words;
+	char *str = &line_no_comment[0];
+	char *character = strtok(str," ");
+	while (character != NULL){
 		words.push_back(character);
+		character = strtok(NULL," ");
 	}
+		return words;
 }
 
 bool program::identifierCheck(string ident) {
@@ -157,6 +159,7 @@ bool program::identifierCheck(string ident) {
 		cout << "i->getName(): " << i->getName() << endl;
 		cout << "ident: " << ident << endl;
 		string name = i->getName();
+		cout << "NAME: " << name << endl;
 		if (name == ident) {
 			return true;
 		}
