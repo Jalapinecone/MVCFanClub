@@ -175,16 +175,6 @@ bool program::identifierCheck(string ident) {
 	return false;
 }
 
-bool program::identifierCheck(string ident) {
-	for (auto &i : identifiers) {
-		string name = i->getName();
-		if (name == ident) {
-			return true;
-		}
-	}
-	return false;
-}
-
 
 void program::saveJson()
 {
@@ -194,7 +184,7 @@ void program::saveJson()
     for (auto &s : statements)
     {
         QJsonObject jst;
-	jst["instructiom"]  = QString::fromStdString(s->getInstruction());
+	jst["instruction"]  = QString::fromStdString(s->getInstruction());
 	QJsonArray joa;
 		for (auto &o: s->getOperands())
 		{

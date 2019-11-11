@@ -11,7 +11,7 @@ class compstmt : public statement
 		~compstmt();
 		void compile(string instr);
 		void run();
-		vector<char*> split(string);
+		vector <char *> split(string);
 	private:
 		// vector<operand*> operands;	
 		string instructions;
