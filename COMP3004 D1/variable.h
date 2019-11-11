@@ -7,6 +7,7 @@ class variable : public identifier
 {
 	public:
 		variable(int num);
+		variable(string n);
 		~variable();
 		int getValue();
 	private:

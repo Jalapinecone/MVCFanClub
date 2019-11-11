@@ -4,6 +4,7 @@
 class identifier
 {
 	public:
+		identifier();
 		identifier(string n);
 		~identifier();
 		string getName();

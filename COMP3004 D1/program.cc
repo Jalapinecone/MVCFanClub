@@ -51,9 +51,9 @@ void program::createStatement(int i){
 	if (line_no_comment.length() > 1) {
 		cout << line_no_comment << endl;
 		words = split(line_no_comment);
-		char* label = words[0];
-		if (&label[(strlen(label) - 1)] == ":") {
-			identifiers.push_back(new identifier(string(words[0])));
+		char* labl = words[0];
+		if (labl[(strlen(labl) - 1)] == ':') {
+			identifiers.push_back(new label(string(words[0])));
 		}
 		else if (strcmp(words[0], "dci") == 0) {
 			cout << "compile dci" << endl;
@@ -63,7 +63,7 @@ void program::createStatement(int i){
 			}
 			else {
 				statements.push_back(new declintstmt(line_no_comment));
-				identifiers.push_back(new identifier(string(words[1])));
+				identifiers.push_back(new variable(string(words[1])));
 				cout << "dci compiled" << endl;
 			}
 		}

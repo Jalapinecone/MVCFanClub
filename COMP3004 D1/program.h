@@ -11,6 +11,8 @@
 #include "jMoreStmt.h"
 #include "jumpStatement.h"
 #include "endStmt.h"
+#include "label.h"
+#include "variable.h"
 
 
 

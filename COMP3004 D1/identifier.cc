@@ -5,6 +5,10 @@ using namespace std;
 
 #include "identifier.h"
 
+identifier::identifier()
+{
+	
+}
 identifier::identifier(string n)
 {
         cout << "Create identifier and set name" << endl;
