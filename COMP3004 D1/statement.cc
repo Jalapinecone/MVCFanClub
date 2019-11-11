@@ -22,6 +22,10 @@ void statement::run(){
 	cout << "run program" << endl;
 }
 
+string statement::getInstruction(){
+	return instruction;
+}
+
 vector<operand*> statement::getOperands()
 {
 	return operands;

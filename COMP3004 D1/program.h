@@ -32,7 +32,7 @@ class program
 		void split(string);
 		void print();
 		bool identifierCheck(string);
-		void saveJson(QString);
+		void saveJson();
 		// vector<operand> getOperand(statement);
 	private:
 		int comparisonFlag;

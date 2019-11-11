@@ -13,4 +13,6 @@ operand::~operand(){
 
 }
 
-
+string operand::getName(){
+	return eachOperand;
+}

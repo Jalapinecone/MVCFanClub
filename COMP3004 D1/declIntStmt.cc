@@ -18,6 +18,7 @@ declintstmt::~declintstmt(){
 
 void declintstmt::compile(string inst){
 	vector<char*> words = split(inst);
+	instruction = string(words[0]);
 	if (words.size() != 2) {
         std::cout << "Could not compile dci statement. Requires 1 operand to compile";
         exit(1);

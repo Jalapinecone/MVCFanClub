@@ -12,7 +12,9 @@ class statement
 		virtual void compile(string instr) = 0;
 		virtual void run() = 0;
                 vector<operand*> operands;
-                vector<operand*> getOperands();;
+		string instruction;
+                vector<operand*> getOperands();
+		string getInstruction();
         private:
                 
 };

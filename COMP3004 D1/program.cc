@@ -34,11 +34,7 @@ void program::compile(){
     		createStatement(i);
 	}
 
-	cout << "enter file name with .json to save compiled code: ";
-	cin >> jsonName;
-	cout<<endl;
-	QString name = QString::fromStdString(jsonName);
-	saveJson(name);
+	this->saveJson();
 }
 
 void program::execute(){
@@ -150,38 +146,31 @@ bool program::identifierCheck(string ident) {
 }
 
 
-void program::saveJson(QString path)
+void program::saveJson()
 {
-	QFile file (path);
-    QTextStream out (&file);
-	vector <QJsonObject> objs;
-    
-	if(!file.open(QIODevice::WriteOnly))
-    {
-        qInfo() << "File Opening Error"<<endl;
-    }
-
-	int num = 0;
+	QJsonObject Program;
+	Program["filename"] = QString::fromStdString(this->filename);
+	QJsonArray jsa;
     for (auto &s : statements)
     {
-        QJsonObject json;
-		json["name"]  = num;
-
-		for (auto &d: s->operands)
+        QJsonObject jst;
+	jst["instructiom"]  = QString::fromStdString(s->getInstruction());
+	QJsonArray joa;
+		for (auto &o: s->getOperands())
 		{
-        	json["operand " + num] = d;
+			QJsonObject jop;
+        		jop["name"] = QString::fromStdString(o->getName());
+			joa.push_back(jop);
 		}
-
-        QJsonDocument doc(json);
-		QString text (doc.toJson(QJsonDocument::Compact));
-		out << text;
-		num++;
+		jst["operands"] = joa;
+		jsa.push_back(jst);
     }
-	 file.flush();
-     file.close();
+    Program["statements"] = jsa;
+    QJsonDocument doc(Program);
+    cout << "enter file name with .json to save compiled code: ";
+    cin >> jsonName;
+    cout<<endl;
+    QFile file(QString::fromStdString(jsonName));
+    file.open(QIODevice::WriteOnly);
+    file.write(doc.toJson());
 }
-
-// vector<operand> program :: getOperand(statement s)
-// {
-// 	return s->getOperands();
-// }
