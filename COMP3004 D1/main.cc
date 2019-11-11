@@ -18,8 +18,8 @@ int main()
 	//Testing vector for saveProgram
 	program currentProgram;
 	currentProgram.filename = "Test File Name 1";
-	currentProgram.lines = {"dci a","rdi a"};
-	
+	currentProgram.lines = {"dci a","dci c", "cmp a b"};
+	//currentProgram.lines = {"dci a", "cmp a b"};
 	cout << currentProgram.filename << endl;
 	std::vector<string> results ={};
 
