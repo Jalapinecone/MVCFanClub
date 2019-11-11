@@ -38,7 +38,7 @@ void program::createStatement(int i){
 		split(line_no_comment);
 		char* label = words[0];
 		if (&label[(strlen(label) - 1)] == ":") {
-			identifiers.push_back(new label(string(words[0])));
+			identifiers.push_back(new identifier(string(words[0])));
 		}
 		else if (strcmp(words[0], "dci") == 0) {
 			cout << "compile dci" << endl;
@@ -48,7 +48,7 @@ void program::createStatement(int i){
 			}
 			else {
 				statements.push_back(new declintstmt(line_no_comment));
-				identifiers.push_back(new variable(string(words[1])));
+				identifiers.push_back(new identifier(string(words[1])));
 			}
 		}
 		else if (strcmp(words[0], "rdi") == 0) {
@@ -83,6 +83,7 @@ void program::createStatement(int i){
 		}
 		else if (strcmp(words[0], "jmr") == 0) {
 			if (compare) {
+				bool okay = identifierCheck(string(words[1]));
 				if (okay) {
 					statements.push_back(new jmorestmt(line_no_comment));
 				}
@@ -95,6 +96,7 @@ void program::createStatement(int i){
 			}
 		}
 		else if (strcmp(words[0], "jmp") == 0) {
+			bool okay = identifierCheck(string(words[1]));
 			if (okay) {
 				statements.push_back(new jumpstatement(line_no_comment));
 			}
@@ -126,7 +128,7 @@ void program::split(string line_no_comment){
 bool program::identifierCheck(string ident) {
 	for (auto &i : identifiers) {
 		string name = i->getName();
-		if (strcmp(name, ident) == 0) {
+		if (name == ident) {
 			return true;
 		}
 	}
