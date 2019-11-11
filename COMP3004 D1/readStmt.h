@@ -14,6 +14,6 @@ class readstmt : public statement
 		vector<char*> split(string);
 	private:
 		string instructions;
-		vector<operand*> operands;
+		// vector<operand*> operands;
 };
 #endif

@@ -2,6 +2,7 @@
 #define PROGRAM_H
 #include <string>
 #include <vector>
+#include <QString>
 #include "statement.h"
 #include "declIntStmt.h"
 #include "readStmt.h"
@@ -23,6 +24,7 @@ class program
 		void changeName(string);
 		~program();
 		string filename;
+		string jsonName;
 		vector<string> lines;
 		void compile();
 		void execute();
@@ -30,7 +32,7 @@ class program
 		vector <char *> split(string);
 		void print();
 		bool identifierCheck(string);
-
+		void saveJson();
 	private:
 		int comparisonFlag;
 		vector<statement*> statements;

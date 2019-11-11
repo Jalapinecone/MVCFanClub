@@ -13,7 +13,7 @@ class compstmt : public statement
 		void run();
 		vector<char*> split(string);
 	private:
-		vector<operand*> operands;	
+		// vector<operand*> operands;	
 		string instructions;
 };
 #endif
