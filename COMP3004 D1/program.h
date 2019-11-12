@@ -33,6 +33,7 @@ class program
 		void print();
 		bool identifierCheck(string);
 		void saveJson();
+		vector<string> errors;
 	private:
 		int comparisonFlag;
 		vector<statement*> statements;

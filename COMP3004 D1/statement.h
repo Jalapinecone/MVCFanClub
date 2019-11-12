@@ -6,7 +6,6 @@
 #include "identifier.h"
 #include "label.h"
 
-
 //Statement initializer - abstract class for all user-entered code statements
 class statement
 {

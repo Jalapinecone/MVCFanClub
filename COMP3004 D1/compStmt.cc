@@ -27,7 +27,7 @@ void compstmt::compile(string inst){
     if (labl[(strlen(labl) - 1)] == ':') {
 		//Ensuring Enough operands were entered for the compStmt instruction
 		if (words.size() != 4) {
-			std::cout << "Could not compile comp statement. Requires 2 operands to compile";
+			cout << "Could not compile comp statement. Requires 2 operands to compile";
 			exit(1);
 		}
 		//Create Label, Operands, and Instruction objects

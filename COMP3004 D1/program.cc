@@ -71,7 +71,7 @@ void program::createStatement(int i){
 					if (strcmp(words[1], "dci") == 0) {
 						bool okay = identifierCheck(string(words[2]));
 	                	        	if (okay) {
-	                	                	cout << "Failed to compile: Identifier already exists" << endl;
+	                	                	errors.insert(errors.begin(),"Failed to compile: Identifier already exists");
 	                	        	}
 	                	        	else {
 	                	                	statements.push_back(new declintstmt(line_no_comment));
@@ -86,7 +86,7 @@ void program::createStatement(int i){
 		                                	statements.push_back(new readstmt(line_no_comment));
 		                        	}
 		                        	else{
-		                                	cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[2] << "' exists: " << endl;
+		                                	errors.insert(errors.begin(),"Failed to compile line " + to_string(i) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[2]) + "' exists: ");
 		                        	}
 					}
 					//stores new prt statements, checking to see if the given identifiers exists,
@@ -97,7 +97,7 @@ void program::createStatement(int i){
 			                                statements.push_back(new printstmt(line_no_comment));
 			                        }
 			                        else {
-			                                cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[2] << "' exists: " << endl;
+			                                errors.insert(errors.begin(),"Failed to compile line " + to_string(i) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[2]) + "' exists: ");
 			                        }
 			                }
 					//stores new cmp statements, checking to see if the identifiers exists already, 
@@ -110,36 +110,21 @@ void program::createStatement(int i){
 			                                compare = true;
 			                        }
 			                        else {
-			                                cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier(s) with name ";
-			                                if(!okay){
-			                                        cout << " '" << words[2] << "' ";
-			                                }
-			                                if(!okay && !okay2){
-			                                        cout << " and ";
-			                                }
-			                                if(!okay2){
-			                                        cout << " '" << words[3] << "' ";
-			                                }
-			                                cout << " exist. " << endl;
-			                        }
+			                                errors.insert(errors.begin(),"Failed to compile line " + to_string(i) + ": '" + line_no_comment);
+						}
 					}
 					//stores new jmr statements, checking to see if the identifier exists already, 
 					//then stores the statement in a vector
 					else if (strcmp(words[1], "jmr") == 0) {
-			                        if (compare) {
-		        	                        bool okay = identifierCheck(string(words[2]));
-		        	                        if (okay) {
-		        	                                statements.push_back(new jmorestmt(line_no_comment));
-		        	                        }
-		        	                        else {
-			        	                        identifiers.push_back(new label(string(words[2])));
-								statements.push_back(new jmorestmt(line_no_comment));
-							}
+		        	                bool okay = identifierCheck(string(words[2]));
+		        	                if (okay) {
+		        	                	statements.push_back(new jmorestmt(line_no_comment));
 		        	                }
 		        	                else {
-		        	                        cout << "Failed to compile: No compare instruction: " << endl;
+			        	                identifiers.push_back(new label(string(words[2])));
+							statements.push_back(new jmorestmt(line_no_comment));
 		        	                }
-		        	        }
+					}
 					//stores new jmp statements, checking to see if the identifier exists already, 
 					//then stores the statement in a vector
 					else if (strcmp(words[1], "jmp") == 0) {
@@ -159,13 +144,13 @@ void program::createStatement(int i){
 			                	}
 					//If the command is invalid
 		            else {
-		            	        cout << "Failed to compile: Invalid command found: " << words[0] << endl;
+		            	        errors.insert(errors.begin(),"Failed to compile: Invalid command found: " + string(words[0]) + " ");
 		
 		            }
 				}
 				//if the label already exists
 				else{
-					cout << "Label: " << words[0] << " already exists" <<endl;	
+					errors.insert(errors.begin(), "Label: " + string(words[0]) + " already exists");	
 				}
 			}
 //When there is no label as the first word 
@@ -175,7 +160,7 @@ void program::createStatement(int i){
 			else if (strcmp(words[0], "dci") == 0) {
 				bool okay = identifierCheck(string(words[1]));
 				if (okay) {
-					cout << "Failed to compile: Identifier already exists" << endl;
+					errors.insert(errors.begin(),"Failed to compile: Identifier already exists");
 				}
 				else {
 					statements.push_back(new declintstmt(line_no_comment));
@@ -190,7 +175,7 @@ void program::createStatement(int i){
 					statements.push_back(new readstmt(line_no_comment));
 				}
 				else{
-					cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[1] << "' exists: " << endl;
+					errors.insert(errors.begin(),"Failed to compile line " + to_string(i) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[1]) + "' exists ");
 				}
 			}
 			//stores new prt statements, checking to see if the given identifiers exists,
@@ -201,7 +186,7 @@ void program::createStatement(int i){
 					statements.push_back(new printstmt(line_no_comment));
 				}
 				else {
-					cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[1] << "' exists: " << endl;
+					errors.insert(errors.begin(),"Failed to compile line " + to_string(i) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[1]) + "' exists ");
 				}
 			}
 			//stores new cmp statements, checking to see if the identifiers exists already, 
@@ -214,17 +199,7 @@ void program::createStatement(int i){
 					compare = true;
 				}
 				else {
-					cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier(s) with name ";
-					if(!okay){
-						cout << " '" << words[1] << "' ";
-					}
-					if(!okay && !okay2){
-						cout << " and ";
-					}
-					if(!okay2){
-						cout << " '" << words[2] << "' ";
-					}
-					cout << " exist. " << endl;
+					errors.insert(errors.begin(), "Failed to compile line " + to_string(i) + ": '" + line_no_comment + "' No identifier(s) with that name ");
 				}
 			}
 			//stores new jmr statements, checking to see if the identifier exists already, 
@@ -241,7 +216,7 @@ void program::createStatement(int i){
 					}
 				}
 				else {
-					cout << "Failed to compile: No compare instruction: " << endl;
+					errors.insert(errors.begin(), "Failed to compile: No compare instruction ");
 				}
 			}
 			//stores new jmp statements, checking to see if the identifier exists already, 
@@ -265,7 +240,7 @@ void program::createStatement(int i){
 			}
 			//Error check for any invalid commands entered
 			else {
-				cout << "Failed to compile: Invalid command found: " << words[0] << endl;
+				errors.insert(errors.begin(),"Failed to compile: Invalid command found: " + string(words[0]));
 	
 			}
 		}
