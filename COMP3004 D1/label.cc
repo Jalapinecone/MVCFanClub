@@ -5,6 +5,7 @@ using namespace std;
 
 #include "label.h"
 
+
 label::label() : identifier(name)
 {
 
@@ -17,4 +18,9 @@ label::label(string n)
 }
 label::~label(){
 
+}
+
+//Basic getter to get the name 
+string label::getName(){
+	return name;
 }

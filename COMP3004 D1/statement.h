@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include "operand.h"
+#include "identifier.h"
+#include "label.h"
 
 
 //Statement initializer - abstract class for all user-entered code statements
@@ -13,13 +15,17 @@ class statement
                 ~statement();
 		virtual void compile(string instr) = 0;
 		virtual void run() = 0;
-		string instruction;
-                vector<operand*> operands;
                 vector<operand*> getOperands();
 		string getInstruction();
-                vector <char *> split(string);
+		void setInstruction(string);
+		void addOperand(operand*);
+		void addLabel(label*);
+		vector<label*> getLabels();
+		vector <char *> split(string);
         private:
-                
+		string instruction;
+		vector<operand*> operands;
+		vector<label*> labels;
                 
 };
 #endif

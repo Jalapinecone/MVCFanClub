@@ -11,8 +11,8 @@ class loadProgram : public functionInterface
 		void execute(program &p);
 		loadProgram();
 	private:
-		int counter = 0;
 		string text;
+		int counter = 0;
 };
 #endif
 

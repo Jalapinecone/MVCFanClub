@@ -14,27 +14,27 @@ void saveProgram::execute(program &p)
 {
 	cout << "SAVE" << endl;
 
-        //Ask user for file name and stores it
+	//Ask user for file name and stores it
 	string fileName;
 	cout << "Enter name of file: ";
-        cin >> fileName;
-        cout<<endl;
+	cin >> fileName;
+	cout << endl;
 
-        //Adds the .txt extension to the file
-        fileName += ".txt";
+	//Adds the .txt extension to the file
+	fileName += ".txt";
 	cout << fileName << endl;
 
-        //Opens/creates the file for editing
-        std::ofstream file;
-        file.open(fileName);
+	//Opens/creates the file for editing
+	std::ofstream file;
+	file.open(fileName);
 
-        //Loops through the lines vector and stores each to the file
-        for(string n: p.lines)
-        {
-                file << n << endl;
-        }
+	//Loops through the lines vector and stores each to the file
+	for (string n : p.lines)
+	{
+		file << n << endl;
+	}
 
-        file.close();
+	file.close();
 
-        cout<< "\nFile Saved Successfully as " << fileName << "\n"<<endl;
+	cout << "\nFile Saved Successfully as " << fileName << "\n" << endl;
 }

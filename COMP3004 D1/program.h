@@ -38,7 +38,7 @@ class program
 		vector<statement*> statements;
 		vector<identifier*> identifiers;
 		bool compare = false;
-
+		bool done = false;
 
 
 };

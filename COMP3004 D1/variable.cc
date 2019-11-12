@@ -11,6 +11,7 @@ variable::variable(int num) : identifier(name)
 	value = num;
 }
 
+//Sets the current name to the passed in one for a given identifier
 variable::variable(string n)
 {
 	name = n;
