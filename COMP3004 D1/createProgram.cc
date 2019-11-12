@@ -12,11 +12,10 @@ void createProgram::execute(program &p)
 	//Creates new program object
 	program* newProgram = new program;
 	newProgram->changeName(p.filename);
-	cout << "File name:" << newProgram->filename << endl;
 
 	//Re-prints the program's name
 	p = *newProgram;
-	cout << p.filename << endl;
+	p.errors.insert(p.errors.begin(), "File Created with name: " + p.filename);
 }
 createProgram::createProgram()
 {

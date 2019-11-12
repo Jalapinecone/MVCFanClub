@@ -25,11 +25,6 @@ void compstmt::compile(string inst){
     char* labl = words[0];
 	//Check to see if there is a label
     if (labl[(strlen(labl) - 1)] == ':') {
-		//Ensuring Enough operands were entered for the compStmt instruction
-		if (words.size() != 4) {
-			cout << "Could not compile comp statement. Requires 2 operands to compile";
-			exit(1);
-		}
 		//Create Label, Operands, and Instruction objects
 		label* lb = new label(std::string(words[0]));
 		addLabel(lb);
@@ -40,11 +35,6 @@ void compstmt::compile(string inst){
 		addOperand(op2);
 	}
 	else{
-		//Ensuring Enough operands were entered for the compStmt instruction
-        if (words.size() != 3) {
-        	std::cout << "Could not compile comp statement. Requires 2 operands to compile";
-        	exit(1);
-    		}
 		//Create Instruction, and Operands
 		setInstruction(string(words[0]));
         operand* op = new operand(std::string(words[1]));

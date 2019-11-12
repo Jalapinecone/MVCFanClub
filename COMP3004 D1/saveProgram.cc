@@ -11,7 +11,7 @@ void saveProgram::execute(program &p) {
 
 	//this chunk of code adds the contents of p.lines (the lines of code) to the file
 	std::ofstream file;
-	file.open(p.filename);
+	file.open(p.filename+".txt");
 
 	for (string n : p.lines)
 	{
@@ -21,6 +21,6 @@ void saveProgram::execute(program &p) {
 	file << text;
 	file.close();	//close the file because we're good programmers
 
-	cout << "\nFile Saved Successfully as " << p.filename << "\n" << endl;
+	p.errors.insert(p.errors.begin(),"File Saved Successfully as: " + p.filename);
 }
 
