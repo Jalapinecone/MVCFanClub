@@ -8,7 +8,8 @@ class operand
 		operand();
 		operand(string);
 		~operand();
-	private:
+		string getName();
 		string eachOperand;
+	private:
 };
 #endif

@@ -11,9 +11,9 @@ class jmorestmt : public statement
 		~jmorestmt();
 		void compile(string instr);
 		void run();
-		vector<char*> split(string);
+		vector <char *> split(string);
 	private:
 		string instructions;
-		vector<operand*> operands;
+		// vector<operand*> operands;
 };
 #endif

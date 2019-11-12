@@ -32,12 +32,14 @@ void readstmt::run(){
 
 }
 
-vector<char*> readstmt::split(string inst){
-        vector<char*> words;
-        char *start = &inst[0];
-        for (char *character = strtok(start," "); character != nullptr; character = strtok(nullptr, " ")){
-        words.push_back(start);
-        }
-        return words;
+vector<char *> readstmt::split(string line_no_comment){
+	vector <char *> words;
+	char *str = &line_no_comment[0];
+	char *character = strtok(str," ");
+	while (character != NULL){
+		words.push_back(character);
+		character = strtok(NULL," ");
+	}
+		return words;
 }
 

@@ -3,9 +3,17 @@
 #include <string>
 #include <cstring>
 #include <fstream>
+#include <QDebug>
+#include <QDataStream>
+#include <QTextStream>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonDocument>
 using namespace std;
 
 #include "program.h"
+// #include "conversion.h"
 
 program::program(){
 
@@ -25,6 +33,8 @@ void program::compile(){
 	for(unsigned i = 0; i != lines.size(); i++) {
     		createStatement(i);
 	}
+
+	this->saveJson();
 }
 
 void program::execute(){
@@ -35,15 +45,15 @@ void program::createStatement(int i){
 	cout << "_________________________" << endl;
 	cout << "CREATE STATEMENT" << endl;
 	cout << "i: " << i << endl;
-
+        vector<char*> words;	
 	string line_no_comment = lines[i].substr(0, lines[i].find('#', 0));
 	cout << "LINE NO COMMENT:" << line_no_comment << endl;
 	if (line_no_comment.length() > 1) {
 		cout << line_no_comment << endl;
-		split(line_no_comment);
-		char* label = words[0];
-		if (&label[(strlen(label) - 1)] == ":") {
-			identifiers.push_back(new identifier(string(words[0])));
+		words = split(line_no_comment);
+		char* labl = words[0];
+		if (labl[(strlen(labl) - 1)] == ':') {
+			identifiers.push_back(new label(string(words[0])));
 		}
 		else if (strcmp(words[0], "dci") == 0) {
 			cout << "compile dci" << endl;
@@ -53,7 +63,7 @@ void program::createStatement(int i){
 			}
 			else {
 				statements.push_back(new declintstmt(line_no_comment));
-				identifiers.push_back(new identifier(string(words[1])));
+				identifiers.push_back(new variable(string(words[1])));
 				cout << "dci compiled" << endl;
 			}
 		}
@@ -80,8 +90,6 @@ void program::createStatement(int i){
 		}
 		else if (strcmp(words[0], "cmp") == 0) {
 			cout << "compile cmp" << endl;
-			cout << words[1] << endl;
-			cout << words[2] << endl;
 			bool okay = identifierCheck(string(words[1]));
 			bool okay2 = identifierCheck(string(words[2]));
 			if (okay && okay2) {
@@ -142,13 +150,15 @@ void program::print(){
 	cout << "print program" << endl;
 }
 
-void program::split(string line_no_comment){
-	char *start = &line_no_comment[0];
-	int i = 0;
-	for (char *character = strtok(start," "); character != nullptr; character = strtok(nullptr, " ")){
-		++i;
+vector<char *> program::split(string line_no_comment){
+	vector <char *> words;
+	char *str = &line_no_comment[0];
+	char *character = strtok(str," ");
+	while (character != NULL){
 		words.push_back(character);
+		character = strtok(NULL," ");
 	}
+		return words;
 }
 
 bool program::identifierCheck(string ident) {
@@ -157,9 +167,40 @@ bool program::identifierCheck(string ident) {
 		cout << "i->getName(): " << i->getName() << endl;
 		cout << "ident: " << ident << endl;
 		string name = i->getName();
+		cout << "NAME: " << name << endl;
 		if (name == ident) {
 			return true;
 		}
 	}
 	return false;
+}
+
+
+void program::saveJson()
+{
+	QJsonObject Program;
+	Program["filename"] = QString::fromStdString(this->filename);
+	QJsonArray jsa;
+    for (auto &s : statements)
+    {
+        QJsonObject jst;
+	jst["instruction"]  = QString::fromStdString(s->getInstruction());
+	QJsonArray joa;
+		for (auto &o: s->getOperands())
+		{
+			QJsonObject jop;
+        		jop["name"] = QString::fromStdString(o->getName());
+			joa.push_back(jop);
+		}
+		jst["operands"] = joa;
+		jsa.push_back(jst);
+    }
+    Program["statements"] = jsa;
+    QJsonDocument doc(Program);
+    cout << "enter file name with .json to save compiled code: ";
+    cin >> jsonName;
+    cout<<endl;
+    QFile file(QString::fromStdString(jsonName));
+    file.open(QIODevice::WriteOnly);
+    file.write(doc.toJson());
 }

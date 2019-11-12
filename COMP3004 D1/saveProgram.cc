@@ -10,11 +10,11 @@ using namespace std;
 void saveProgram::execute(program &p)
 
 {
+	cout << "SAVE" << endl;
 	string fileName;
-	cout << "Enter name of file: ";
+	cout << "Enter name of file with .txt extension: ";
         cin >> fileName;
         cout<<endl;
-        fileName += ".txt";
 
         std::ofstream file;
         file.open(fileName);
@@ -28,5 +28,5 @@ void saveProgram::execute(program &p)
 
         file.close();
 
-        cout<< "\nFile Saved Successfully!\n"<<endl;
+        cout<< "\nFile Saved Successfully as " << fileName << "\n"<<endl;
 }
