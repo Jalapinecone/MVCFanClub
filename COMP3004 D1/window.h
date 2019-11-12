@@ -27,12 +27,13 @@ private slots:
 private:
     QPushButton *btnCreate;
     QPushButton *btnSave;
-    QPushButton *btnLoad;
+    //QPushButton *btnLoad;
     QPushButton *btnCompile;
     //QPushButton *btnRun;
     //QPushButton *btnManage;
     QLineEdit *txtExtraInput;
     QPlainTextEdit *txtCodeIn;
+    QPlainTextEdit *txtFdbkOut;
     WindowInterface *main_ptr;
 };
 

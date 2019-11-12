@@ -17,32 +17,32 @@ void WindowInterface::saveProg(string saveProgName, string inCode){
   SCAPESMainObj.setFunctionInterface(&SaveProgram);
   SCAPESMainObj.execute(currentProgram);
 }
-
-vector<string> WindowInterface::loadProg(string loadProgName){
+//mostly works but it crashes if it doesn't find a program so it's not ready for deployment
+std::string WindowInterface::loadProg(string loadProgName){
   currentProgram.filename = loadProgName;
   SCAPESMainObj.setFunctionInterface(&LoadProgram);
   SCAPESMainObj.execute(currentProgram);
-  cout << currentProgram.lines.at(0);
-  return currentProgram.lines;
+  return LinesToString(currentProgram.lines);
 }
-
-void WindowInterface::compileProg(string compProgName, string inCode){
+//interface with the main program to configure the compilation and feed the lines of code down.
+std::string WindowInterface::compileProg(string compProgName, string inCode){
   currentProgram.filename = compProgName;
   currentProgram.lines = toLines(inCode);
   SCAPESMainObj.setFunctionInterface(&CompileProgram);
   SCAPESMainObj.execute(currentProgram);
+  return LinesToString(currentProgram.errors);
 }
-
+//not yet implemented
 void WindowInterface::runProg(){
   SCAPESMainObj.setFunctionInterface(&RunProgram);
   SCAPESMainObj.execute(currentProgram);
 }
-
+//not yet implemented
 void WindowInterface::managePrefs(){
   SCAPESMainObj.setFunctionInterface(&ManageSystemPrefs);
   SCAPESMainObj.execute(currentProgram);
 }
-
+//convert a string into a vector of strings by line breaks.
 std::vector<std::string> WindowInterface::toLines(std::string s){
   vector<string> lines;
 
@@ -56,4 +56,12 @@ std::vector<std::string> WindowInterface::toLines(std::string s){
     }
   }
   return lines;
+}
+//convert a vector of strings into a solid string with each entry in the vector being separated by line breaks
+std::string WindowInterface::LinesToString(std::vector<string> v){
+  string accumulator = "";
+  for(unsigned i = 0; i < v.size(); i++){
+    accumulator += v.at(i) + '\n';
+  }
+  return accumulator;
 }

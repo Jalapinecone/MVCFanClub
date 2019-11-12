@@ -1,4 +1,4 @@
-//Created by Jared on 10/11/2019
+//Created by Jared
 //This class serves to replace all the command line logic in the main.cc and interface with the window class
 #ifndef WINDOW_INTERFACE
 #define WINDOW_INTERFACE
@@ -22,9 +22,9 @@ public:
   WindowInterface();
   void createProg(string newProgName);
   void saveProg(std::string saveProgName, std::string inCode);
-  vector<string> loadProg(string loadProgName);
+  string loadProg(string loadProgName);
   void runProg();
-  void compileProg(string compProgName, string compProgLines);
+  string compileProg(string compProgName, string compProgLines);
   void managePrefs();
 
 private:
@@ -40,6 +40,7 @@ private:
   SCAPESmain SCAPESMainObj;
 
   std::vector<std::string> toLines(std::string s);
+  std::string LinesToString(std::vector<string> v);
 
 };
 #endif
