@@ -26,6 +26,7 @@ void WindowInterface::runProg(){
 }
 
 void WindowInterface::compileProg(){
+  cout << "COMPILE PROG()" << endl;
   SCAPESMainObj.setFunctionInterface(&CompileProgram);
   SCAPESMainObj.execute(currentProgram);
 }

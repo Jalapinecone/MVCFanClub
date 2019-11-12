@@ -26,18 +26,18 @@ Window::Window(QWidget *parent): QWidget (parent)
     btnCompile = new QPushButton("Compile", this);
     btnCompile->setToolTip("Compile the loaded SCAPES program");
     btnCompile->setGeometry(280,10,80,30);
-    connect(btnCompile, SIGNAL (released()), this, SLOT (btnSaveHandler()));
+    connect(btnCompile, SIGNAL (released()), this, SLOT (btnCompileHandler()));
 
     btnRun = new QPushButton("Run", this);
     btnRun->setToolTip("Run the compiled SCAPES program");
     btnRun->setGeometry(370,10,80,30);
-    connect(btnRun, SIGNAL (released()), this, SLOT (btnSaveHandler()));
+    connect(btnRun, SIGNAL (released()), this, SLOT (btnRunHandler()));
 
-    btnManage = new QPushButton("ManagePrefs", this);
+    /*btnManage = new QPushButton("ManagePrefs", this);
     btnManage->setToolTip("Manage Preferences");
     btnManage->setGeometry(460,10,120,30);
     connect(btnManage, SIGNAL (released()), this, SLOT (btnSaveHandler()));
-
+*/
     txtCodeIn = new QPlainTextEdit(this);
     txtCodeIn->setGeometry(10, 50, 780, 540);
 
