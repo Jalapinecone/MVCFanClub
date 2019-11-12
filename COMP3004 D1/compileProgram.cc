@@ -8,6 +8,10 @@ using namespace std;
 void compileProgram::execute(program &p)
 {
         p.compile();
+	p.setCompare(false);
+        p.setDone(false);
+        p.setError(false);
+
 }
 compileProgram::compileProgram()
 {

@@ -5,17 +5,20 @@ WindowInterface::WindowInterface(){
 
 }
 
-void WindowInterface::createProg(string newProgName){
+std::string WindowInterface::createProg(string newProgName){
   currentProgram.filename = newProgName;
   SCAPESMainObj.setFunctionInterface(&CreateProgram);
   SCAPESMainObj.execute(currentProgram);
+  return LinesToString(currentProgram.errors);
+
 }
 
-void WindowInterface::saveProg(string saveProgName, string inCode){
+std::string WindowInterface::saveProg(string saveProgName, string inCode){
   currentProgram.filename = saveProgName;
   currentProgram.lines = toLines(inCode);
   SCAPESMainObj.setFunctionInterface(&SaveProgram);
   SCAPESMainObj.execute(currentProgram);
+  return LinesToString(currentProgram.errors);
 }
 //mostly works but it crashes if it doesn't find a program so it's not ready for deployment
 std::string WindowInterface::loadProg(string loadProgName){

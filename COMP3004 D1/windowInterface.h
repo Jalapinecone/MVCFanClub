@@ -20,8 +20,8 @@
 class WindowInterface{
 public:
   WindowInterface();
-  void createProg(string newProgName);
-  void saveProg(std::string saveProgName, std::string inCode);
+  string createProg(string newProgName);
+  string saveProg(std::string saveProgName, std::string inCode);
   string loadProg(string loadProgName);
   void runProg();
   string compileProg(string compProgName, string compProgLines);

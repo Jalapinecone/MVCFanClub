@@ -1,13 +1,10 @@
-dci a
-dci b
-rdi a   #reads input from user and stores it in variable a
-rdi b   #reads input from user and stores it in variable b
+dci a #declares variable a
+dci b #declares variable b
+rdi a #reads input from user and stores it in variable a
+rdi b #reads input from user and stores it in variable b
 cmp a b #compares the variable values
-prt b   #prints the value of variable b
-end
-
-
-dci a #declare int
-rdi a 
-prt a
-end
+jmr L1 #jumps to the L1 label if the value of a is greater than the value of b
+prt b #prints the value of variable b
+jmp L2 #jumps to label L2
+L1: prt a #prints the variable inside a if L1 is called
+L2: end #ends the program is L2 is called

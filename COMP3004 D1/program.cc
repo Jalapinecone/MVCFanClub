@@ -46,6 +46,8 @@ program::~program(){
 //Used to compile the program
 void program::compile(){
 	//Loop through each line in the file and create a statement for each line
+	identifiers.clear();
+	statements.clear();
 	for(unsigned i = 0; i != lines.size(); i++) {
     		createStatement(i);
 	}
@@ -66,7 +68,8 @@ void program::createStatement(int i){
     //Create a vector of char's to store each word in the line
 	vector<char*> words;
 	//Parse each line to remove comments
-	string line_no_comment = lines[i].substr(0, lines[i].find('#', 0));
+	string line_no_comment = lines[i].substr(0, lines[i].find(" #", 0));
+	line_no_comment = line_no_comment.substr(0, lines[i].find('#', 0));
 	//make sure that there is atleast 1 word in the string
 	if (line_no_comment.length() > 1) {
 		//split each line into words
@@ -105,7 +108,7 @@ void program::createStatement(int i){
 		                                	statements.push_back(new readstmt(line_no_comment));
 		                        	}
 		                        	else{
-		                                	errors.insert(errors.begin(),"Failed to compile line " + to_string(i) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[2]) + "' exists: ");
+		                                	errors.insert(errors.begin(),"Failed to compile line " + to_string(i+1) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[2]) + "' exists: ");
 		                        		err = true;
 						}
 					}
@@ -118,7 +121,7 @@ void program::createStatement(int i){
 			                                statements.push_back(new printstmt(line_no_comment));
 			                        }
 			                        else {
-			                                errors.insert(errors.begin(),"Failed to compile line " + to_string(i) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[2]) + "' exists: ");
+			                                errors.insert(errors.begin(),"Failed to compile line " + to_string(i + 1) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[2]) + "' exists: ");
 			                        	err = true;
 						}
 			                }
@@ -133,7 +136,7 @@ void program::createStatement(int i){
 			                                compare = true;
 			                        }
 			                        else {
-			                                errors.insert(errors.begin(),"Failed to compile line " + to_string(i) + ": '" + line_no_comment);
+			                                errors.insert(errors.begin(),"Failed to compile line " + to_string(i+1) + ": '" + line_no_comment);
 							err = true;
 						}
 					}
@@ -171,7 +174,7 @@ void program::createStatement(int i){
 			                	}
 					//If the command is invalid
 		            else {
-		            	        errors.insert(errors.begin(),"Failed to compile: Invalid command found: " + string(words[0]) + " ");
+		            	        errors.insert(errors.begin(),"Failed to compile: Invalid command found: " + string(words[1]) + " ");
 					err = true;
 		            }
 				}
@@ -206,7 +209,7 @@ void program::createStatement(int i){
 					statements.push_back(new readstmt(line_no_comment));
 				}
 				else{
-					errors.insert(errors.begin(),"Failed to compile line " + to_string(i) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[1]) + "' exists ");
+					errors.insert(errors.begin(),"Failed to compile line " + to_string(i+1) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[1]) + "' exists ");
 					err = true;
 				}
 			}
@@ -219,7 +222,7 @@ void program::createStatement(int i){
 					statements.push_back(new printstmt(line_no_comment));
 				}
 				else {
-					errors.insert(errors.begin(),"Failed to compile line " + to_string(i) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[1]) + "' exists ");
+					errors.insert(errors.begin(),"Failed to compile line " + to_string(i+1) + ": '" + line_no_comment + "' No identifier with that name '" + string(words[1]) + "' exists ");
 					err = true;
 				}
 			}
@@ -234,7 +237,7 @@ void program::createStatement(int i){
 					compare = true;
 				}
 				else {
-					errors.insert(errors.begin(), "Failed to compile line " + to_string(i) + ": '" + line_no_comment + "' No identifier(s) with that name ");
+					errors.insert(errors.begin(), "Failed to compile line " + to_string(i+1) + ": '" + line_no_comment + "' No identifier(s) with that name ");
 					err = true;
 				}
 			}
@@ -319,6 +322,7 @@ bool program::identifierCheck(string ident) {
 	return false;
 }
 
+//Checks to see if the correct number of operands are listed
 void program::wordSize(int ws,int rs){
 	if (ws != rs) {
         	errors.insert(errors.begin(), "Could not compile, statement requires: " + to_string(ws-1)+ "operands to compile");
@@ -386,4 +390,19 @@ void program::saveJson()
     QFile file(QString::fromStdString(jsonName));
     file.open(QIODevice::WriteOnly);
     file.write(doc.toJson());
+}
+
+//Setter for the compare boolean (set each time compile is loaded)
+void program::setCompare(bool comp){
+	compare = comp;
+}
+
+//Setter for the done boolean (set each time compile is loaded)
+void program::setDone(bool d){
+	done = d;
+}
+
+//Setter for the err boolean (set each time compile is loaded)
+void program::setError(bool error){
+	err = error;
 }

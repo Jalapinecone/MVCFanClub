@@ -57,16 +57,19 @@ std::string Window::qstringToString(QString q){
 
 //event handlers
 void Window::btnCreateHandler(){
-     	main_ptr->createProg(qstringToString(txtExtraInput->text()));
+     	//main_ptr->createProg(qstringToString(txtExtraInput->text()));
+	txtFdbkOut->setPlainText(QString::fromStdString(main_ptr->createProg(qstringToString(txtExtraInput->text()))));
+
 }
 void Window::btnSaveHandler(){
-	main_ptr->saveProg(qstringToString(txtExtraInput->text()), qstringToString(txtCodeIn->toPlainText()));
+	//main_ptr->saveProg(qstringToString(txtExtraInput->text()), qstringToString(txtCodeIn->toPlainText()));
+	txtFdbkOut->setPlainText(QString::fromStdString(main_ptr->saveProg(qstringToString(txtExtraInput->text()),qstringToString(txtCodeIn->toPlainText()))));
+
 }
 void Window::btnLoadHandler(){
   txtCodeIn->setPlainText(QString::fromStdString(main_ptr->loadProg(qstringToString(txtExtraInput->text()))));
 }
 void Window::btnCompileHandler(){
-	cout << "compile handler" << endl;
  	//string s = main_ptr->compileProg(qstringToString(txtExtraInput->text()), qstringToString(txtCodeIn->toPlainText()));
   txtFdbkOut->setPlainText(QString::fromStdString(main_ptr->compileProg(qstringToString(txtExtraInput->text()), qstringToString(txtCodeIn->toPlainText()))));
 }

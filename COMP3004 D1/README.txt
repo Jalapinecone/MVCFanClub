@@ -8,6 +8,6 @@ To build this software follow these steps:
 
 When the software launches, you will see a graphical interface. At the top there are 3 buttons, Create, Save and Compile. Before you click any of them, please enter a name for the program in the long, horizontal input bar directly below.
 
-For example, if you enter "src.txt" and then hit create, the editor will be primed to begin. 
-If you then hit save, you will save a state of the code (the large text window to the left) to storage. 
-To compile, make sure there is currently a program in the compiler. Any messages from the compiler will be in the output box to the right of the editor. Make sure you have a name for your compiled program so you can easily find it later. The compiled file is "filename.json" in storage
+For example, if you enter "src" and then hit create, a file called src will be created and the editor will be primed to begin. 
+If you then hit save, you will save a state of the code (the large text window to the left) to that file. If however you did not press create before pressing save it will still create the file and save it to that file  
+To compile, make sure there is currently a program in the compiler. Any messages from the compiler will be in the output box to the right of the editor. Make sure you have a name for your compiled program so you can easily find it later. The compiled file is "<filename>.json" in storage

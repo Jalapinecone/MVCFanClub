@@ -35,6 +35,9 @@ class program
 		void saveJson();
 		vector<string> errors;
 		void wordSize(int,int);
+		void setCompare(bool);
+		void setDone(bool);
+		void setError(bool);
 	private:
 		int comparisonFlag;
 		vector<statement*> statements;

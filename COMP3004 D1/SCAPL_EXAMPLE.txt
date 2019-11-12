@@ -1,10 +1,10 @@
-dci a
-rdi a   #asks user for value and stores it in variable a
-dci b
-rdi b   #asks user for value and stores it in variable a
-L1: rdi a
+dci a #declares integer a
+rdi a #asks user for value and stores it in variable a
+dci b #declares integer b
+rdi b #asks user for value and stores it in variable a
+L1: rdi a #asks user for value and stores it in variable a if L1 is called
 cmp a b #compares the two entered variables
-jmr L1  #keeps looping through asking one user for a different number until it matches the first one
-jmp L2
-L2: end
+jmr L1 #keeps looping through asking one user for a different number until it matches the first one
+jmp L2 #jumps to L2
+L2: end #ends the game
 # put in a and get a friend to put in b. If you guess a to be the same as b you win!
