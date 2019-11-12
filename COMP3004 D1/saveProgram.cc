@@ -6,35 +6,21 @@
 using namespace std;
 
 #include "saveProgram.h"
+//Changes made to main.cc, saveProgram.h, saveProgram.cc, SCAPESmain.cc, SCAPESmain.h, functionInterface.h, functionInterface.cc
+void saveProgram::execute(program &p) {
 
-//Function used to load in a text file containing the un-compiled code
-//strings are stored in a vectored and saved one by one into a text file
-void saveProgram::execute(program &p)
-
-{
-	cout << "SAVE" << endl;
-
-	//Ask user for file name and stores it
-	string fileName;
-	cout << "Enter name of file: ";
-	cin >> fileName;
-	cout << endl;
-
-	//Adds the .txt extension to the file
-	fileName += ".txt";
-	cout << fileName << endl;
-
-	//Opens/creates the file for editing
+	//this chunk of code adds the contents of p.lines (the lines of code) to the file
 	std::ofstream file;
-	file.open(fileName);
+	file.open(p.filename);
 
-	//Loops through the lines vector and stores each to the file
 	for (string n : p.lines)
 	{
 		file << n << endl;
 	}
+	cout << text << endl;
+	file << text;
+	file.close();	//close the file because we're good programmers
 
-	file.close();
-
-	cout << "\nFile Saved Successfully as " << fileName << "\n" << endl;
+	cout << "\nFile Saved Successfully as " << p.filename << "\n" << endl;
+}
 }

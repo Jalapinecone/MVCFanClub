@@ -351,17 +351,12 @@ void program::saveJson()
     }
 
 	//Sets the full object's attributes: 
-    Program["statements"] = jsa;
+	Program["statements"] = jsa;
 
 	//Opens a json document and asks the user for a .json file name
-    QJsonDocument doc(Program);
-	if (filename != NULL) {
-		jsonName = filename + ".json";
-	}
-	else {
-		cout << "Couldn't compile as program name was not entered"
-	}
-
+	QJsonDocument doc(Program);
+	jsonName = filename + ".json";
+	
 	//Opens/creates the file for writing only, then saves the full json object to it
     QFile file(QString::fromStdString(jsonName));
     file.open(QIODevice::WriteOnly);
