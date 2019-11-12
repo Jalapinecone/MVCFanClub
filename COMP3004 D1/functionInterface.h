@@ -3,6 +3,8 @@
 #include <vector>
 #include "program.h"
 
+
+//functionInterface abstract class initialization
 class functionInterface
 {
 	public:

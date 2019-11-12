@@ -5,6 +5,8 @@
 using namespace std;
 
 #include "functionInterface.h"
+
+//Member functions for all classes inheriting from this class
 void functionInterface::execute(program &p)
 {
 

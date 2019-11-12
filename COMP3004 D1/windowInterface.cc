@@ -5,6 +5,7 @@ WindowInterface::WindowInterface(){
 
 }
 
+//This is where the different interfaces and subsequent execute calls are made based on the button pressed on the UI
 void WindowInterface::createProg(){
   SCAPESMainObj.setFunctionInterface(&CreateProgram);
   SCAPESMainObj.execute(currentProgram);
@@ -26,7 +27,6 @@ void WindowInterface::runProg(){
 }
 
 void WindowInterface::compileProg(){
-  cout << "COMPILE PROG()" << endl;
   SCAPESMainObj.setFunctionInterface(&CompileProgram);
   SCAPESMainObj.execute(currentProgram);
 }

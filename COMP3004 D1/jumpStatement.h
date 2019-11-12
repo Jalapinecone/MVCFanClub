@@ -4,6 +4,7 @@
 #include <vector>
 #include "statement.h"
 
+//jumpstmt initializer - inherited from statement abstract class
 class jumpstatement : public statement
 {
 	public:
@@ -11,9 +12,7 @@ class jumpstatement : public statement
 		~jumpstatement();
 		void compile(string instr);
 		void run();
-		vector <char *> split(string);
 	private:
 		string instructions;
-		// vector<operand*> operands;
 }; 
 #endif

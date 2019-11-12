@@ -1,5 +1,4 @@
 //Created by Jared on 10/11/2019
-//This is the object where the GUI is constructed and the event handlers are located
 
 #ifndef WINDOW_H
 #define WINDOW_H
@@ -11,6 +10,8 @@
 #include <QPlainTextEdit>
 #include "windowInterface.h"
 
+
+//This is the object where the GUI is constructed and the event handlers are located
 class Window : public QWidget
 {
     Q_OBJECT

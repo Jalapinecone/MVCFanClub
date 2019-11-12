@@ -10,6 +10,7 @@ label::label() : identifier(name)
 
 }
 
+//Sets internal identifier name to the passed name string
 label::label(string n)
 {
     name = n;

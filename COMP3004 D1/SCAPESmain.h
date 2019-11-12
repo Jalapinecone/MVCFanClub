@@ -3,6 +3,8 @@
 #include "functionInterface.h"
 #include <vector>
 
+
+//functionInterface initializer
 class SCAPESmain
 {
 	public:

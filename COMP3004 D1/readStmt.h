@@ -4,6 +4,7 @@
 #include <vector>
 #include "statement.h"
 
+//readstmt initializer - inherited from statement abstract class
 class readstmt : public statement
 {
 	public:
@@ -11,9 +12,7 @@ class readstmt : public statement
 		~readstmt();
 		void compile(string instr);
 		void run();
-		vector <char *> split(string);
 	private:
 		string instructions;
-		// vector<operand*> operands;
 };
 #endif

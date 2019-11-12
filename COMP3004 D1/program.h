@@ -16,9 +16,7 @@
 
 
 
-
-
-
+//program initializer, used as the main class to manage all of the different programs
 class program
 {
 	public:

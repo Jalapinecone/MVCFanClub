@@ -3,6 +3,7 @@
 #include <string>
 #include "identifier.h"
 
+//variable initializer - inherits from identifier class
 class variable : public identifier
 {
 	public:

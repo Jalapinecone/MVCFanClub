@@ -3,6 +3,8 @@
 #include <string>
 #include "identifier.h"
 
+//Inherits from the identifier class
+//Label initializer class
 class label : public identifier
 {
 	public:

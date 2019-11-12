@@ -1,5 +1,5 @@
 //Created by Jared on 10/11/2019
-//This class serves to replace all the command line logic in the main.cc and interface with the window class
+
 #ifndef WINDOW_INTERFACE
 #define WINDOW_INTERFACE
 
@@ -16,27 +16,28 @@
 #include "manageSystemPrefs.h"
 #include "program.h"
 
+//This class serves to replace all the command line logic in the main.cc and interface with the window class
 class WindowInterface{
-public:
-  WindowInterface();
-  void createProg();
-  void saveProg();
-  void loadProg();
-  void runProg();
-  void compileProg();
-  void managePrefs();
-  
-private:
-  program currentProgram;
-  functionInterface defaultInt;
-  createProgram CreateProgram;
-  saveProgram SaveProgram;
-  loadProgram LoadProgram;
-  runProgram RunProgram;
-  editProgram EditProgram;
-  compileProgram CompileProgram;
-  manageSystemPrefs ManageSystemPrefs;
-  SCAPESmain SCAPESMainObj;
+  public:
+    WindowInterface();
+    void createProg();
+    void saveProg();
+    void loadProg();
+    void runProg();
+    void compileProg();
+    void managePrefs();
+    
+  private:
+    program currentProgram;
+    functionInterface defaultInt;
+    createProgram CreateProgram;
+    saveProgram SaveProgram;
+    loadProgram LoadProgram;
+    runProgram RunProgram;
+    editProgram EditProgram;
+    compileProgram CompileProgram;
+    manageSystemPrefs ManageSystemPrefs;
+    SCAPESmain SCAPESMainObj;
 
 };
 #endif

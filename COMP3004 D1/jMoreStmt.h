@@ -4,6 +4,7 @@
 #include <vector>
 #include "statement.h"
 
+//jmorestmt initializer - inherited from statement abstract class
 class jmorestmt : public statement
 {
 	public:
@@ -11,9 +12,7 @@ class jmorestmt : public statement
 		~jmorestmt();
 		void compile(string instr);
 		void run();
-		vector <char *> split(string);
 	private:
 		string instructions;
-		// vector<operand*> operands;
 };
 #endif

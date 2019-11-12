@@ -1,3 +1,13 @@
+/*-----------------------------
+    SCAPES system Deliverable 1
+    November 12, 2019
+    The MVC Fan Club 
+    By:
+        Alex Cornish (101053176)
+        Brad Campbell (101070833)
+        Jared Sherwood (101035878)
+        Ryan Ayotte (101073548)
+-----------------------------*/
 #include <iostream>
 #include <vector>
 #include <QApplication>
@@ -18,6 +28,7 @@ using namespace std;
 #include "manageSystemPrefs.h"
 #include "program.h"
 
+//Launches the main program, Qt application, and the interface
 int main(int argc, char **argv)
 {
  QApplication app (argc, argv);

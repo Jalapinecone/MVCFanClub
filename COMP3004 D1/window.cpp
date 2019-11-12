@@ -16,34 +16,39 @@ Window::Window(QWidget *parent): QWidget (parent)
     btnSave = new QPushButton("Save", this);
     btnSave->setToolTip("Save a SCAPES program to disk");
     btnSave->setGeometry(100,10,80,30);
+    //this links the signal sent when the save button is hit with the function handler. (participant, signal (type), object where button belongs, slot (handler))
     connect(btnSave, SIGNAL (released()), this, SLOT (btnSaveHandler()));
 
     btnLoad = new QPushButton("Load", this);
     btnLoad->setToolTip("Load a SCAPES program from disk");
     btnLoad->setGeometry(190,10,80,30);
+    //this links the signal sent when the load button is hit with the function handler. (participant, signal (type), object where button belongs, slot (handler))
     connect(btnLoad, SIGNAL (released()), this, SLOT (btnLoadHandler()));
 
     btnCompile = new QPushButton("Compile", this);
     btnCompile->setToolTip("Compile the loaded SCAPES program");
     btnCompile->setGeometry(280,10,80,30);
-    connect(btnCompile, SIGNAL (released()), this, SLOT (btnCompileHandler()));
+    //this links the signal sent when the compile button is hit with the function handler. (participant, signal (type), object where button belongs, slot (handler))
+    connect(btnCompile, SIGNAL (released()), this, SLOT (btnSaveHandler()));
 
     btnRun = new QPushButton("Run", this);
     btnRun->setToolTip("Run the compiled SCAPES program");
     btnRun->setGeometry(370,10,80,30);
-    connect(btnRun, SIGNAL (released()), this, SLOT (btnRunHandler()));
+    //this links the signal sent when the run button is hit with the function handler. (participant, signal (type), object where button belongs, slot (handler))
+    connect(btnRun, SIGNAL (released()), this, SLOT (btnSaveHandler()));
 
-    /*btnManage = new QPushButton("ManagePrefs", this);
+    btnManage = new QPushButton("ManagePrefs", this);
     btnManage->setToolTip("Manage Preferences");
     btnManage->setGeometry(460,10,120,30);
+    //this links the signal sent when the managePrefs button is hit with the function handler. (participant, signal (type), object where button belongs, slot (handler))
     connect(btnManage, SIGNAL (released()), this, SLOT (btnSaveHandler()));
-*/
+
     txtCodeIn = new QPlainTextEdit(this);
     txtCodeIn->setGeometry(10, 50, 780, 540);
 
 }
 
-
+//Creates the handlers for the various button options
 void Window::btnCreateHandler(){
  	cout << "create handler" << endl;
      	main_ptr->createProg();

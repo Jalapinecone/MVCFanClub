@@ -2,6 +2,8 @@
 #define OPERAND_H
 #include <string>
 #include "identifier.h"
+
+//operand initializer
 class operand
 {
 	public:

@@ -4,12 +4,12 @@
 #include <vector>
 #include "functionInterface.h"
 
+//loadProgram initializer - inherits from functionInterface class
 class saveProgram : public functionInterface
 {
 	public:
 		void execute(program &p);
 	private:
-		string text;
 
 };
 #endif

@@ -4,6 +4,8 @@
 #include <vector>
 #include "operand.h"
 
+
+//Statement initializer - abstract class for all user-entered code statements
 class statement
 {
         public:
@@ -11,11 +13,13 @@ class statement
                 ~statement();
 		virtual void compile(string instr) = 0;
 		virtual void run() = 0;
-                vector<operand*> operands;
 		string instruction;
+                vector<operand*> operands;
                 vector<operand*> getOperands();
 		string getInstruction();
+                vector <char *> split(string);
         private:
+                
                 
 };
 #endif

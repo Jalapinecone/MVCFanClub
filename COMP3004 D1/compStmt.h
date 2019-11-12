@@ -4,6 +4,7 @@
 #include <vector>
 #include "statement.h"
 
+//compstmt initializer - inherited from statement abstract class
 class compstmt : public statement
 {
 	public:
@@ -11,9 +12,7 @@ class compstmt : public statement
 		~compstmt();
 		void compile(string instr);
 		void run();
-		vector <char *> split(string);
 	private:
-		// vector<operand*> operands;	
 		string instructions;
 };
 #endif

@@ -9,6 +9,8 @@ using namespace std;
 #include "createProgram.h"
 #include "saveProgram.h"
 
+//Main interface class - member functions for all classes inheriting from it
+//Sets the internal current interface to the passed in one
 void SCAPESmain::setFunctionInterface(functionInterface* funInt)
 {
 	_funInt = funInt;
