@@ -16,8 +16,12 @@ void createProgram::execute(program &p)
 	//Re-prints the program's name
 	p = *newProgram;
 	p.errors.insert(p.errors.begin(), "File Created with name: " + p.filename);
+	delete(newProgram);
 }
 createProgram::createProgram()
+{	
+}
+
+createProgram::~createProgram()
 {
-		
 }

@@ -16,7 +16,6 @@ printstmt::printstmt(string inst){
 }
 
 printstmt::~printstmt(){
-
 }
 
 //Creates a vector storing each part of a statement: label, instructions and operands

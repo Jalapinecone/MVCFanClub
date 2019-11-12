@@ -10,5 +10,6 @@ class createProgram : public functionInterface
 	public:
 		void execute(program &p);
 		createProgram();
+		~createProgram();
 };
 #endif

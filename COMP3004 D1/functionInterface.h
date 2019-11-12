@@ -9,5 +9,6 @@ class functionInterface
 	public:
 		virtual void execute(program &p);
 		functionInterface();
+		~functionInterface();
 };
 #endif

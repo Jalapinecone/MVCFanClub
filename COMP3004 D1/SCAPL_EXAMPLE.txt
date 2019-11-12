@@ -1,10 +1,10 @@
 dci a
-rdi a
+rdi a   #asks user for value and stores it in variable a
 dci b
-rdi b
+rdi b   #asks user for value and stores it in variable a
 L1: rdi a
-cmp a b
-jmr L1
+cmp a b #compares the two entered variables
+jmr L1  #keeps looping through asking one user for a different number until it matches the first one
 jmp L2
 L2: end
 # put in a and get a friend to put in b. If you guess a to be the same as b you win!

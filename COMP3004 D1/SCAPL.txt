@@ -1,9 +1,13 @@
 dci a
 dci b
-rdi a
-rdi b
-cmp a b
-prt b
+rdi a   #reads input from user and stores it in variable a
+rdi b   #reads input from user and stores it in variable b
+cmp a b #compares the variable values
+prt b   #prints the value of variable b
 end
 
 
+dci a #declare int
+rdi a 
+prt a
+end

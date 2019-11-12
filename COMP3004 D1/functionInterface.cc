@@ -12,5 +12,8 @@ void functionInterface::execute(program &p)
 
 }
 functionInterface::functionInterface(){
+}
 
+functionInterface::~functionInterface()
+{
 }

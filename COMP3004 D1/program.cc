@@ -27,8 +27,20 @@ void program::changeName(string inputStr)
 	this->err = false;
 }
 
+//In charge of unallocating dynamically allocated memory
 program::~program(){
-
+	for (auto &s : statements)
+	{
+		for(auto &d: s->getOperands())
+		{
+			delete(d);
+		}
+		for(auto &n: s->getLabels())
+		{
+			delete(n);
+		}
+		delete(s);
+	}
 }
 
 //Used to compile the program
