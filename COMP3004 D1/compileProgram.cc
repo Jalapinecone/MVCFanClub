@@ -7,6 +7,7 @@ using namespace std;
 
 void compileProgram::execute(program &p)
 {
+	cout << "COMPILE" << endl;
         p.compile();
 }
 compileProgram::compileProgram()

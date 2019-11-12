@@ -7,6 +7,7 @@ class label : public identifier
 {
 	public:
 		label();
+		label(string n);
 		~label();
 	private:
 

@@ -10,6 +10,11 @@ variable::variable(int num) : identifier(name)
 	value = num;
 }
 
+variable::variable(string n)
+{
+	name = n;
+}
+
 variable::~variable(){
 
 }

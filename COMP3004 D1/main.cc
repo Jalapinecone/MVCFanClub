@@ -18,8 +18,8 @@ int main()
 	//Testing vector for saveProgram
 	program currentProgram;
 	currentProgram.filename = "Test File Name 1";
-	currentProgram.lines = {"hello", "this", "is", "a", "trial"};
-	
+	currentProgram.lines = {"dci a","dci c", "cmp a b"};
+	//currentProgram.lines = {"dci a", "cmp a b"};
 	cout << currentProgram.filename << endl;
 	std::vector<string> results ={};
 
@@ -44,6 +44,7 @@ int main()
 	SCAPESmain SCAPESMainObj;
 	string selection;
 	while(selection != "8"){
+		cout << "____________________________" << endl;
 		cout << "(0) View Loaded Program Info" << endl;
 	        cout << "(1) CreateProgram" << endl;
       	  	cout << "(2) SaveProgram" << endl;

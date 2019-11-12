@@ -10,6 +10,10 @@ label::label() : identifier(name)
 
 }
 
+label::label(string n)
+{
+    name = n;
+}
 label::~label(){
 
 }
