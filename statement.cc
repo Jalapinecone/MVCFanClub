@@ -8,7 +8,7 @@ using namespace std;
 
 statement::statement()
 {
-        cout << "Create statement" << endl;
+
 }
 
 statement::~statement(){

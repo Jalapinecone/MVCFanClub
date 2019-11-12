@@ -10,6 +10,6 @@ class saveProgram : public functionInterface
 	public:
 		void execute(program &p);
 	private:
-
+		string text;
 };
 #endif

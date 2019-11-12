@@ -1,0 +1,10 @@
+dci a
+rdi a
+dci b
+rdi b
+L1: rdi a
+cmp a b
+jmr L1
+jmp L2
+L2: end
+# put in a and get a friend to put in b. If you guess a to be the same as b you win!

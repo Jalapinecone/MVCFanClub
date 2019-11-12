@@ -33,12 +33,15 @@ class program
 		void print();
 		bool identifierCheck(string);
 		void saveJson();
+		vector<string> errors;
+		void wordSize(int,int);
 	private:
 		int comparisonFlag;
 		vector<statement*> statements;
 		vector<identifier*> identifiers;
 		bool compare = false;
 		bool done = false;
+		bool err = false;
 
 
 };
