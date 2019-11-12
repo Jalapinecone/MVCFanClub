@@ -52,96 +52,198 @@ void program::createStatement(int i){
 		cout << line_no_comment << endl;
 		words = split(line_no_comment);
 		char* labl = words[0];
-		if (labl[(strlen(labl) - 1)] == ':') {
-			identifiers.push_back(new label(string(words[0])));
-		}
-		else if (strcmp(words[0], "dci") == 0) {
-			cout << "compile dci" << endl;
-			bool okay = identifierCheck(string(words[1]));
-			if (okay) {
-				cout << "Failed to compile: Identifier already exists" << endl;
-			}
-			else {
-				statements.push_back(new declintstmt(line_no_comment));
-				identifiers.push_back(new variable(string(words[1])));
-				cout << "dci compiled" << endl;
-			}
-		}
-		else if (strcmp(words[0], "rdi") == 0) {
-			cout << "compile rdi" << endl;
-			bool okay = identifierCheck(string(words[1]));
-			if (okay) {
-				statements.push_back(new readstmt(line_no_comment));
-				cout << "rdi compiled" << endl;
-			}
-			else{
-				cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[1] << "' exists: " << endl;
-			}
-		}
-		else if (strcmp(words[0], "prt") == 0) {
-			cout << "compile prt" << endl;
-			bool okay = identifierCheck(string(words[1]));
-			if (okay) {
-				statements.push_back(new printstmt(line_no_comment));
-			}
-			else {
-				cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[1] << "' exists: " << endl;
-			}
-		}
-		else if (strcmp(words[0], "cmp") == 0) {
-			cout << "compile cmp" << endl;
-			bool okay = identifierCheck(string(words[1]));
-			bool okay2 = identifierCheck(string(words[2]));
-			if (okay && okay2) {
-				statements.push_back(new compstmt(line_no_comment));
-				compare = true;
-			}
-			else {
-				cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier(s) with name ";
-				if(!okay){
-					cout << " '" << words[1] << "' ";
+		if(!done){
+			if (labl[(strlen(labl) - 1)] == ':') {
+		                bool okay = identifierCheck(string(words[0]));
+				if (!okay){
+                                        identifiers.push_back(new label(string(words[0])));
+					if (strcmp(words[1], "dci") == 0) {
+						bool okay = identifierCheck(string(words[2]));
+	                	        	if (okay) {
+	                	                	cout << "Failed to compile: Identifier already exists" << endl;
+	                	        	}
+	                	        	else {
+							cout << "TET" << endl;
+	                	                	statements.push_back(new declintstmt(line_no_comment));
+	 		                               	identifiers.push_back(new variable(string(words[2])));
+	 		                       	}
+					}
+					else if(strcmp(words[1], "rdi") == 0) {
+		                        	cout << "compile rdi" << endl;
+		                       	 	bool okay = identifierCheck(string(words[2]));
+		                        	if (okay) {
+		                                	statements.push_back(new readstmt(line_no_comment));
+		                                	cout << "rdi compiled" << endl;
+		                        	}
+		                        	else{
+		                                	cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[2] << "' exists: " << endl;
+		                        	}
+					}
+					else if (strcmp(words[1], "prt") == 0) {
+			                        cout << "compile prt" << endl;
+			                        bool okay = identifierCheck(string(words[2]));
+			                        if (okay) {
+			                                statements.push_back(new printstmt(line_no_comment));
+			                        }
+			                        else {
+			                                cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[2] << "' exists: " << endl;
+			                        }
+			                }
+					else if (strcmp(words[1], "cmp") == 0) {
+			                        cout << "compile cmp" << endl;
+			                        bool okay = identifierCheck(string(words[2]));
+			                        bool okay2 = identifierCheck(string(words[3]));
+			                        if (okay && okay2) {
+			                                statements.push_back(new compstmt(line_no_comment));
+			                                compare = true;
+			                        }
+			                        else {
+			                                cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier(s) with name ";
+			                                if(!okay){
+			                                        cout << " '" << words[2] << "' ";
+			                                }
+			                                if(!okay && !okay2){
+			                                        cout << " and ";
+			                                }
+			                                if(!okay2){
+			                                        cout << " '" << words[3] << "' ";
+			                                }
+			                                cout << " exist. " << endl;
+			                        }
+					}
+					else if (strcmp(words[1], "jmr") == 0) {
+			                        cout << "compile jmr" << endl;
+			                        if (compare) {
+		        	                        bool okay = identifierCheck(string(words[2]));
+		        	                        if (okay) {
+		        	                                statements.push_back(new jmorestmt(line_no_comment));
+		        	                        }
+		        	                        else {
+			        	                        identifiers.push_back(new label(string(words[2])));
+								statements.push_back(new jmorestmt(line_no_comment));
+							}
+		        	                }
+		        	                else {
+		        	                        cout << "Failed to compile: No compare instruction: " << endl;
+		        	                }
+		        	        }
+					else if (strcmp(words[1], "jmp") == 0) {
+		                        	cout << "compile jmp" << endl;
+		                        	bool okay = identifierCheck(string(words[2]));
+		                        	if (okay) {
+	        	                	        statements.push_back(new jumpstatement(line_no_comment));
+	        	                	}
+	        	                	else {
+							identifiers.push_back(new label(string(words[2])));
+							statements.push_back(new jumpstatement(line_no_comment));
+	
+      			                  	}
+					}
+					else if (strcmp(words[1], "end") == 0) {
+		                        	cout << "compile end" << endl;
+		                        	statements.push_back(new endstmt(line_no_comment));
+			                	}
+		                	else {
+		                	        cout << "Failed to compile: Invalid command found: " << words[0] << endl;
+		
+		                	}
 				}
-				if(!okay && !okay2){
-					cout << " and ";
+				else{
+					cout << "Label: " << words[0] << " already exists" <<endl;	
 				}
-				if(!okay2){
-					cout << " '" << words[2] << "' ";
-				}
-				cout << " exist. " << endl;
 			}
-		}
-		else if (strcmp(words[0], "jmr") == 0) {
-			cout << "compile jmr" << endl;
-			if (compare) {
+			else if (strcmp(words[0], "dci") == 0) {
+				cout << "compile dci" << endl;
 				bool okay = identifierCheck(string(words[1]));
 				if (okay) {
-					statements.push_back(new jmorestmt(line_no_comment));
+					cout << "Failed to compile: Identifier already exists" << endl;
+				}
+				else {
+					statements.push_back(new declintstmt(line_no_comment));
+					identifiers.push_back(new variable(string(words[1])));
+					cout << "dci compiled" << endl;
+				}
+			}
+			else if (strcmp(words[0], "rdi") == 0) {
+				cout << "compile rdi" << endl;
+				bool okay = identifierCheck(string(words[1]));
+				if (okay) {
+					statements.push_back(new readstmt(line_no_comment));
+					cout << "rdi compiled" << endl;
+				}
+				else{
+					cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[1] << "' exists: " << endl;
+				}
+			}
+			else if (strcmp(words[0], "prt") == 0) {
+				cout << "compile prt" << endl;
+				bool okay = identifierCheck(string(words[1]));
+				if (okay) {
+					statements.push_back(new printstmt(line_no_comment));
 				}
 				else {
 					cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[1] << "' exists: " << endl;
 				}
 			}
+			else if (strcmp(words[0], "cmp") == 0) {
+				cout << "compile cmp" << endl;
+				bool okay = identifierCheck(string(words[1]));
+				bool okay2 = identifierCheck(string(words[2]));
+				if (okay && okay2) {
+					statements.push_back(new compstmt(line_no_comment));
+					compare = true;
+				}
+				else {
+					cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier(s) with name ";
+					if(!okay){
+						cout << " '" << words[1] << "' ";
+					}
+					if(!okay && !okay2){
+						cout << " and ";
+					}
+					if(!okay2){
+						cout << " '" << words[2] << "' ";
+					}
+					cout << " exist. " << endl;
+				}
+			}
+			else if (strcmp(words[0], "jmr") == 0) {
+				cout << "compile jmr" << endl;
+				if (compare) {
+					bool okay = identifierCheck(string(words[1]));
+					if (okay) {
+						statements.push_back(new jmorestmt(line_no_comment));
+					}
+					else {
+						identifiers.push_back(new label(string(words[1])));
+						statements.push_back(new jumpstatement(line_no_comment));
+					}
+				}
+				else {
+					cout << "Failed to compile: No compare instruction: " << endl;
+				}
+			}
+			else if (strcmp(words[0], "jmp") == 0) {
+				cout << "compile jmp" << endl;
+				bool okay = identifierCheck(string(words[1]));
+				if (okay) {
+					statements.push_back(new jumpstatement(line_no_comment));
+				}
+				else {
+					identifiers.push_back(new label(string(words[1])));
+					statements.push_back(new jumpstatement(line_no_comment));
+	
+				}
+			}
+			else if (strcmp(words[0], "end") == 0) {
+				cout << "compile end" << endl;
+				statements.push_back(new endstmt(line_no_comment));
+				done = true;
+			}
 			else {
-				cout << "Failed to compile: No compare instruction: " << endl;
+				cout << "Failed to compile: Invalid command found: " << words[0] << endl;
+	
 			}
-		}
-		else if (strcmp(words[0], "jmp") == 0) {
-			cout << "compile jmp" << endl;
-			bool okay = identifierCheck(string(words[1]));
-			if (okay) {
-				statements.push_back(new jumpstatement(line_no_comment));
-			}
-			else {
-				cout << "Failed to compile line " << i << ": '" << line_no_comment << "' No identifier with that name '" << words[1] << "' exists: " << endl;
-			}
-		}
-		else if (strcmp(words[0], "end") == 0) {
-			cout << "compile end" << endl;
-			statements.push_back(new endstmt(line_no_comment));
-		}
-		else {
-			cout << "Failed to compile: Invalid command found: " << words[0] << endl;
-
 		}
 	}
 }
@@ -185,6 +287,11 @@ void program::saveJson()
     {
         QJsonObject jst;
 	jst["instruction"]  = QString::fromStdString(s->getInstruction());
+	for (auto &l : s->getLabels())
+	{
+		cout << "BLAAAAAAAGGGGGGHHHHHH" << endl;
+		jst["label"] = QString::fromStdString(l->getName());
+	}
 	QJsonArray joa;
 		for (auto &o: s->getOperands())
 		{

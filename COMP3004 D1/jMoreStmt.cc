@@ -20,11 +20,23 @@ jmorestmt::~jmorestmt(){
 
 void jmorestmt::compile(string inst){
 	vector<char*> words = split(inst);
-        if (words.size() != 2) {
-        std::cout << "Could not compile jmr  statement. Requires 1 operand to compile";
-        exit(1);
-    }
-    operands.push_back(new operand(std::string(words[1])));
+        char* labl = words[0];
+        if(labl[(strlen(labl) - 1)] == ':'){
+                label* lb = new label(std::string(words[0]));
+                addLabel(lb);
+                setInstruction(string(words[1]));
+		operand* op = new operand(std::string(words[2]));
+		addOperand(op);
+	}
+	else{
+		setInstruction(string(words[0]));
+       		if (words.size() != 2) {
+        	std::cout << "Could not compile jmr  statement. Requires 1 operand to compile";
+        	exit(1);
+    	}
+                operand* op = new operand(std::string(words[1]));
+                addOperand(op);
+	}
 	
 }
 

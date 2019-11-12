@@ -9,6 +9,7 @@ class label : public identifier
 		label();
 		label(string n);
 		~label();
+		string getName();
 	private:
 
 };

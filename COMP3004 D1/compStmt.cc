@@ -20,12 +20,27 @@ compstmt::~compstmt(){
 
 void compstmt::compile(string inst){
 	vector<char*> words = split(inst);
-        if (words.size() != 3) {
-        std::cout << "Could not compile comp statement. Requires 2 operands to compile";
-        exit(1);
-    }
-    operands.push_back(new operand(std::string(words[1])));
-    operands.push_back(new operand(std::string(words[2])));
+        char* labl = words[0];
+        if (labl[(strlen(labl) - 1)] == ':') {
+		label* lb = new label(std::string(words[0]));
+		addLabel(lb);
+		setInstruction(string(words[1]));
+		operand* op = new operand(std::string(words[2]));
+		addOperand(op);
+		operand* op2 = new operand(std::string(words[3]));
+		addOperand(op2);
+	}
+	else{
+        	if (words.size() != 3) {
+        	std::cout << "Could not compile comp statement. Requires 2 operands to compile";
+        	exit(1);
+    		}
+		setInstruction(string(words[0]));
+                operand* op = new operand(std::string(words[1]));
+                addOperand(op);
+                operand* op2 = new operand(std::string(words[2]));
+                addOperand(op2);
+	}
 
 }
 

@@ -17,3 +17,6 @@ label::label(string n)
 label::~label(){
 
 }
+string label::getName(){
+	return name;
+}
