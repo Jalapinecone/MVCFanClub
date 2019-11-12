@@ -10,11 +10,8 @@ using namespace std;
 void loadProgram::execute(program &p)
 {
 	string fileName;
-        cout << "Enter name of file: ";
-        cin >> fileName;
-        cout<<endl;
+        fileName = p.filename;
         fileName += ".txt";
-	cout << fileName << endl;
         std::ifstream file;
         file.open (fileName);
         p.filename = fileName;

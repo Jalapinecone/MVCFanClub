@@ -3,6 +3,7 @@
 #ifndef WINDOW_INTERFACE
 #define WINDOW_INTERFACE
 
+#include <string>
 #include <iostream>
 #include <vector>
 #include "functionInterface.h"
@@ -19,11 +20,11 @@
 class WindowInterface{
 public:
   WindowInterface();
-  void createProg();
-  void saveProg();
-  void loadProg();
+  void createProg(string);
+  void saveProg(string, vector<string>);
+  void loadProg(string);
   void runProg();
-  void compileProg();
+  void compileProg(string, vector<string>);
   void managePrefs();
   
 private:

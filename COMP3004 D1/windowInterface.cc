@@ -5,17 +5,21 @@ WindowInterface::WindowInterface(){
 
 }
 
-void WindowInterface::createProg(){
+void WindowInterface::createProg(string newProgName){
+  currentProgram.filename = newProgName;
   SCAPESMainObj.setFunctionInterface(&CreateProgram);
   SCAPESMainObj.execute(currentProgram);
 }
 
-void WindowInterface::saveProg(){
+void WindowInterface::saveProg(string saveProgName, vector<string> saveProgLines){
+  currentProgram.filename = saveProgName;
+  currentProgram.lines = saveProgLines;
   SCAPESMainObj.setFunctionInterface(&SaveProgram);
   SCAPESMainObj.execute(currentProgram);
 }
 
-void WindowInterface::loadProg(){
+void WindowInterface::loadProg(string loadProgName){
+  currentProgram.filename = loadProgName;
   SCAPESMainObj.setFunctionInterface(&LoadProgram);
   SCAPESMainObj.execute(currentProgram);
 }
@@ -25,8 +29,9 @@ void WindowInterface::runProg(){
   SCAPESMainObj.execute(currentProgram);
 }
 
-void WindowInterface::compileProg(){
-  cout << "COMPILE PROG()" << endl;
+void WindowInterface::compileProg(string compProgName, vector<string> compProgLines){
+  currentProgram.fileName = compProgName;
+  currentProgram.lines = compProgLines;
   SCAPESMainObj.setFunctionInterface(&CompileProgram);
   SCAPESMainObj.execute(currentProgram);
 }

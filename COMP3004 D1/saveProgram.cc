@@ -12,10 +12,7 @@ void saveProgram::execute(program &p)
 {
 	cout << "SAVE" << endl;
 	string fileName;
-	cout << "Enter name of file with .txt extension: ";
-        cin >> fileName;
-        cout<<endl;
-
+        fileName = p.filename;
         std::ofstream file;
         file.open(fileName);
 
